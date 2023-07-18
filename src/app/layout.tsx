@@ -1,4 +1,5 @@
 import { NavBar } from "./components/navbar/NavBar";
+import { CustomToaster } from "./components/ui/CustomToaster";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         <NavBar />
         {children}
+        <CustomToaster />
       </body>
     </html>
   );
