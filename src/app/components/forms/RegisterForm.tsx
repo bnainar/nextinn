@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import * as z from "zod";
 import { SocialLogin } from "./SocialLogin";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 interface RegisterFormProps {}
 
@@ -68,6 +69,7 @@ const RegisterForm: FC<RegisterFormProps> = ({}) => {
           type="submit"
           width="content"
           className="grow sm:grow-0"
+          icon={<AiOutlineUserAdd />}
         >
           Register
         </Button>

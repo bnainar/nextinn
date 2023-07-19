@@ -1,10 +1,8 @@
 "use client";
 import { FC } from "react";
-import { toast, Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
-interface CustomToasterProps {}
-
-const CustomToaster: FC<CustomToasterProps> = ({}) => {
+export const CustomToaster: FC = () => {
   return (
     <Toaster
       position="bottom-right"
@@ -37,5 +35,3 @@ const CustomToaster: FC<CustomToasterProps> = ({}) => {
     />
   );
 };
-
-export { CustomToaster, toast };

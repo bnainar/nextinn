@@ -8,6 +8,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { SocialLogin } from "./SocialLogin";
+import { MdLogin } from "react-icons/md";
 
 interface LoginFormProps {}
 
@@ -58,7 +59,12 @@ const LoginForm: FC<LoginFormProps> = ({}) => {
             </button>
           </span>
 
-          <Button variant="filled" type="submit" width="content">
+          <Button
+            variant="filled"
+            type="submit"
+            width="content"
+            icon={<MdLogin />}
+          >
             Login
           </Button>
         </div>

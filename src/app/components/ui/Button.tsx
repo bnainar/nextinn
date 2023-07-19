@@ -3,12 +3,12 @@ import { FC, ReactNode } from "react";
 
 interface ButtonProps {
   variant: "filled" | "outline";
+  type?: "button" | "submit";
+  width: "full" | "content";
   className?: string;
   children: ReactNode;
-  type?: "button" | "submit";
   isLoading?: boolean;
   icon?: ReactNode;
-  width: "full" | "content";
 }
 const styles = {
   filled:
@@ -31,13 +31,13 @@ const Button: FC<ButtonProps> = ({
     <button
       type={type}
       className={clsx(
-        `px-5 py-2 text-lg rounded-lg flex justify-between items-center gap-4 `,
+        `px-5 py-2 text-lg rounded-lg inline-flex justify-between transition items-center gap-3 `,
         styles[variant],
         styles[width],
         className
       )}
     >
-      {icon}
+      {icon ?? <span className="mr-0.5 -ml-0.5 h-5 w-5">{icon}</span>}
       <span className={clsx(width === "full" && "grow")}>
         {isLoading ? "Loading..." : children}
       </span>

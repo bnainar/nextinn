@@ -28,7 +28,7 @@ export const DialogContent = React.forwardRef<
         <header className="flex justify-between border-b-[1px] border-slate-300 py-4 px-5">
           <DialogPrimitive.Close
             aria-label="Close"
-            className="grow-0 w-8 rounded-full hover:bg-slate-300 items-center "
+            className="grow-0 w-8 h-8 rounded-full hover:bg-slate-300 items-center "
           >
             <MdOutlineClose
               className="w-full fill-neutral-600"
