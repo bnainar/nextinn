@@ -7,11 +7,8 @@ interface Store {
   login: {
     isOpen: boolean;
   };
-  register: {
-    isOpen: boolean;
-  };
+  
   setOpenLogin: (val: boolean) => void;
-  setOpenRegister: (val: boolean) => void;
   setPopoverOpen: (val: boolean) => void;
 }
 
@@ -22,22 +19,14 @@ export const useStore = create<Store>()((set) => ({
   login: {
     isOpen: false,
   },
-  register: {
-    isOpen: false,
-  },
+  
   setOpenLogin: (val) => {
     set({ popover: { isOpen: true } });
     setTimeout(() => {
-      set({ login: { isOpen: val }, register:{isOpen:false} });
+      set({ login: { isOpen: val }  });
     }, 10); 
   },
-  setOpenRegister: (val) => {
-    set({
-      popover: { isOpen: true },
-      login: { isOpen: false },
-      register: { isOpen: val },
-    });
-  },
+  
   setPopoverOpen: (val) => set({ popover: { isOpen: val } }),
 }));
 

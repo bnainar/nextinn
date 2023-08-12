@@ -1,7 +1,6 @@
 "use client";
 import { FC } from "react";
 import { Input } from "../ui/Input";
-import { useStore } from "@/app/stores";
 import { Button } from "../ui/Button";
 import toast from "react-hot-toast";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -20,7 +19,6 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const LoginForm: FC<LoginFormProps> = ({}) => {
-  const setopenRegister = useStore((s) => s.setOpenRegister);
   const {
     register,
     handleSubmit,
@@ -36,38 +34,28 @@ const LoginForm: FC<LoginFormProps> = ({}) => {
   return (
     <>
       <form onSubmit={handleSubmit(handleLogin)}>
+        <div className="mb-3">
+          <div className="font-bold text-2xl text-slate-800">
+            Welcome to NextInn
+          </div>
+          <div className="text-neutral-700">Find your next stay with us</div>
+        </div>
         <Input
           label="Email"
           type="text"
           {...register("email")}
           errors={errors.email}
         />
-        <Input
-          label="Password"
-          type="password"
-          {...register("password")}
-          errors={errors.password}
-        />
-        <div className="flex flex-col sm:flex-row gap-3 justify-between items-center ">
-          <span className="text-neutral-700">
-            New to NextInn?
-            <button
-              onClick={() => setopenRegister(true)}
-              className="ml-1 underline decoration-slate-400 font-semibold text-neutral-800 cursor-pointer"
-            >
-              Register
-            </button>
-          </span>
 
-          <Button
-            variant="filled"
-            type="submit"
-            width="content"
-            icon={<MdLogin />}
-          >
-            Login
-          </Button>
-        </div>
+        <Button
+          variant="filled"
+          type="submit"
+          width="full"
+          icon={<MdLogin />}
+          className="mt-3"
+        >
+          Login
+        </Button>
         <SocialLogin />
       </form>
     </>
