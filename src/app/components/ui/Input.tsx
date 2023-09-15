@@ -4,15 +4,7 @@ import { FieldError } from "react-hook-form";
 
 interface InputProps {
   label: string;
-  type:
-    | "button"
-    | "email"
-    | "hidden"
-    | "number"
-    | "tel"
-    | "password"
-    | "text"
-    | "url";
+  type: "email" | "hidden" | "number" | "tel" | "password" | "text" | "url";
   errors?: FieldError;
 }
 

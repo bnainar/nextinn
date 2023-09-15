@@ -5,10 +5,12 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Avatar } from "../ui/Avatar";
 import { Dialog, DialogTrigger, DialogContent } from "../ui/Dialog";
 import { LoginForm } from "../forms/LoginForm";
+// import { useStore } from "@/app/stores";
 
 interface UserMenuProps {}
 
 const UserMenu: FC<UserMenuProps> = ({}) => {
+  // const { login, popover, setOpenLogin, setPopoverOpen } = useStore((s) => s);
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>

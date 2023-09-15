@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface Store {
   popover: {
@@ -7,7 +7,7 @@ interface Store {
   login: {
     isOpen: boolean;
   };
-  
+
   setOpenLogin: (val: boolean) => void;
   setPopoverOpen: (val: boolean) => void;
 }
@@ -19,14 +19,14 @@ export const useStore = create<Store>()((set) => ({
   login: {
     isOpen: false,
   },
-  
+
   setOpenLogin: (val) => {
     set({ popover: { isOpen: true } });
     setTimeout(() => {
-      set({ login: { isOpen: val }  });
-    }, 10); 
+      set({ login: { isOpen: val } });
+    }, 10);
   },
-  
+
   setPopoverOpen: (val) => set({ popover: { isOpen: val } }),
 }));
 

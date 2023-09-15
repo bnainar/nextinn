@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// next auth stuff
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+
+  favIds       String[]       @db.ObjectId
+  listings     Listing[]
+  reservations Reservations[]
+}
+
+// oauth
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Listing {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  desc        String
+  imgURL      String
+  createdAt   DateTime @default(now())
+  userId      String   @db.ObjectId
+  // for filtering
+  price       Int
+  category    String
+  roomCount   Int
+  bathCount   Int
+  guestsLimit Int
+  location    String
+
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reservations Reservations[]
+}
+
+model Reservations {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  listingId String   @db.ObjectId
+  startDate DateTime
+  endDate   DateTime
+  amount    Int
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
