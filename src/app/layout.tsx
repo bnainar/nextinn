@@ -6,6 +6,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
 import { Welcome } from "./components/Welcome";
+import { CategoriesList } from "./components/categories/CategoriesList";
 
 export const metadata: Metadata = {
   title: "NextInn",
@@ -22,9 +23,10 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className={font.className + " bg-purple-300"}>
+      <body className={font.className + " bg-purple-100"}>
         <SessionProvider session={session}>
           <NavBar />
+          <CategoriesList />
           {children}
           <Welcome />
           <CustomToaster />

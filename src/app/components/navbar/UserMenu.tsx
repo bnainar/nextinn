@@ -13,14 +13,13 @@ interface UserMenuProps {}
 const UserMenu: FC<UserMenuProps> = ({}) => {
   // const { login, popover, setOpenLogin, setPopoverOpen } = useStore((s) => s);
   const { data: session } = useSession();
-  console.log(session);
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger>
-        <div className="flex items-center justify-between w-12 sm:w-20 py-1 h-12 border-[1px] border-slate-300 sm:gap-2 shadow-sm hover:shadow-md transition-shadow rounded-full">
+      <DropdownMenu.Trigger asChild>
+        <button className="flex items-center justify-between w-12 sm:w-20 py-1 h-12 border-[1px] border-slate-300 active:border-slate-500 sm:gap-2 shadow-sm hover:shadow-md transition-shadow rounded-full">
           <MdMenu className="sm:ml-3 grow sm:grow-0" />
           <Avatar src={session?.user?.image} className="mr-3" />
-        </div>
+        </button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content className="bg-slate-100 shadow-lg transition-all border-[1px] border-slate-300 rounded-lg mt-2 mr-5">
