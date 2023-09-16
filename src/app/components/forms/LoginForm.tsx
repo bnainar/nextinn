@@ -1,21 +1,21 @@
 "use client";
 import { FC } from "react";
-import toast from "react-hot-toast";
-import * as z from "zod";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../ui/Input";
-import { Button } from "../ui/Button";
-import { MdLogin } from "react-icons/md";
 import { SocialLogin } from "./SocialLogin";
+// import toast from "react-hot-toast";
+// import * as z from "zod";
+// import { useForm, SubmitHandler } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { Input } from "../ui/Input";
+// import { Button } from "../ui/Button";
+// import { MdLogin } from "react-icons/md";
 
 interface LoginFormProps {}
 
-const schema = z.object({
-  email: z.string().email({ message: "Enter a valid email" }),
-});
+// const schema = z.object({
+//   email: z.string().email({ message: "Enter a valid email" }),
+// });
 
-type FormValues = z.infer<typeof schema>;
+// type FormValues = z.infer<typeof schema>;
 
 const LoginForm: FC<LoginFormProps> = ({}) => {
   // const {

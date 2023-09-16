@@ -5,6 +5,7 @@ import { CustomToaster } from "./components/ui/CustomToaster";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
+import { Welcome } from "./components/Welcome";
 
 export const metadata: Metadata = {
   title: "NextInn",
@@ -25,6 +26,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <NavBar />
           {children}
+          <Welcome />
           <CustomToaster />
         </SessionProvider>
       </body>
