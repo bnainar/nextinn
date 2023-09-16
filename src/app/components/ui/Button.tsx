@@ -9,6 +9,7 @@ interface ButtonProps {
   children: ReactNode;
   isLoading?: boolean;
   icon?: ReactNode;
+  onClick?: () => void;
 }
 const styles = {
   filled:
@@ -26,10 +27,12 @@ const Button: FC<ButtonProps> = ({
   isLoading,
   width,
   icon,
+  onClick,
 }) => {
   return (
     <button
       type={type}
+      onClick={onClick}
       className={clsx(
         `px-5 py-2 text-lg rounded-lg inline-flex justify-between transition items-center gap-3 `,
         styles[variant],

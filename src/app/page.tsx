@@ -1,11 +1,9 @@
-import { FC } from 'react'
+import { FC } from "react";
 
-interface HomeProps {
-  
-}
+interface HomeProps {}
 
 const Home: FC<HomeProps> = ({}) => {
-  return <div>Home</div>
-}
+  return <div>Home</div>;
+};
 
-export default Home
+export default Home;

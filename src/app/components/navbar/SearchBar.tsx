@@ -5,7 +5,7 @@ interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
   return (
-    <div className="flex pb-1 flex-row items-center justify-between text-sm transition-all w-full md:w-auto pr-5 pl-2 h-12 mr-1 rounded-3xl border-[1px] border-slate-300 shadow-sm hover:shadow-md cursor-pointer">
+    <div className="flex pb-1 flex-row items-center justify-between text-sm transition-all w-full sm:w-auto pr-5 pl-2 h-12 mr-1 rounded-3xl border-[1px] border-slate-300 shadow-sm hover:shadow-md cursor-pointer">
       <div className="px-3 font-semibold text-ellipsis overflow-hidden">
         Anywhere
       </div>
