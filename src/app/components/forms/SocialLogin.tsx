@@ -13,6 +13,7 @@ const SocialLogin: FC<SocialLoginProps> = ({}) => {
         variant="outline"
         type="submit"
         width="full"
+        hasIcon={true}
         icon={<FcGoogle fontSize="1.25rem" />}
         onClick={() => signIn("google")}
       >
@@ -22,6 +23,7 @@ const SocialLogin: FC<SocialLoginProps> = ({}) => {
         variant="outline"
         type="submit"
         width="full"
+        hasIcon={true}
         icon={<AiFillGithub fontSize="1.25rem" />}
         onClick={() => signIn("github")}
       >
