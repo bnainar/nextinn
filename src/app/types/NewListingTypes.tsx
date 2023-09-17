@@ -1,8 +1,7 @@
 import * as z from "zod";
-
 export const schema = z.object({
   category: z.string().min(1, { message: "Select any category" }),
-  location: z.string().min(1, { message: "Select a location" }),
+  location: z.any(),
   roomCount: z.number().positive(),
   bathCount: z.number().positive(),
   guestsLimit: z.number().positive(),
