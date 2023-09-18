@@ -2,7 +2,7 @@
 import { FC } from "react";
 
 import clsx from "clsx";
-import { Category } from "../../categories/categories";
+import { Category } from "@/app/components/categories/categories";
 
 interface CategoryCardSelect {
   data: Category;
@@ -16,15 +16,18 @@ const CategoryCardSelect: FC<CategoryCardSelect> = ({
   handleSelect,
 }) => {
   const styles = {
-    t: "text-neutral-800 border-purple-800",
-    f: "text-neutral-500 hover:text-neutral-800 border-transparent hover:border-purple-400",
+    t: "border-purple-800",
+    f: "border-transparent hover:border-purple-400",
   };
+  // console.log(label, selected);
 
   return (
     <div
-      onClick={() => handleSelect(label)}
+      onClick={() => {
+        handleSelect(label);
+      }}
       className={clsx(
-        `flex flex-row gap-2 items-center p-4 border-2 rounded-lg cursor-pointer active:scale-90 transition`,
+        `flex flex-col gap-2 items-start p-4 border-2 text-neutral-700 rounded-lg cursor-pointer active:scale-90 transition`,
         styles[selected ? "t" : "f"]
       )}
     >

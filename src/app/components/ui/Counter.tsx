@@ -11,7 +11,7 @@ interface CounterProps {
   label: SchemaKeys;
   value: number;
   minValue?: number;
-  changeFormValue: (id: SchemaKeys, val: any) => void;
+  onChange: (val: number) => void;
 }
 
 const Counter: FC<CounterProps> = ({
@@ -20,7 +20,7 @@ const Counter: FC<CounterProps> = ({
   value = 1,
   minValue = 1,
   label,
-  changeFormValue,
+  onChange,
 }) => {
   return (
     <div className="flex flex-row justify-between py-4 w-full">
@@ -31,15 +31,12 @@ const Counter: FC<CounterProps> = ({
       <div className="flex gap-2 items-center">
         <IconButton
           icon={AiOutlineMinus}
-          disabled={value <= minValue}
-          onClick={() => changeFormValue(label, Math.max(1, value - 1))}
+          disabled={value === minValue}
+          onClick={() => onChange(value - 1)}
         />
 
         <div className="text-xl px-4 font-mono">{value}</div>
-        <IconButton
-          icon={AiOutlinePlus}
-          onClick={() => changeFormValue(label, value + 1)}
-        />
+        <IconButton icon={AiOutlinePlus} onClick={() => onChange(value + 1)} />
       </div>
     </div>
   );
@@ -59,8 +56,9 @@ const IconButton: FC<IconButtonProps> = ({ icon: Icon, disabled, onClick }) => {
   };
   return (
     <button
-      className="rounded-full flex items-center justify-center h-10 w-10 p-2 border-[1px] 
-      border-slate-600 hover:border-slate-700 hover:bg-slate-400
+      type="button"
+      className="rounded-full flex items-center justify-center h-10 w-10 p-2 border-[1px] active:scale-90 transition
+      border-slate-600 hover:border-slate-700 hover:bg-slate-300
       disabled:border-slate-400 disabled:text-slate-400"
       onClick={onClick}
     >

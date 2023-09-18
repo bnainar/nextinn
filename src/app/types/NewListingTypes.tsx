@@ -13,6 +13,7 @@ export type SchemaKeys =
   | "roomCount"
   | "bathCount"
   | "guestsLimit"
+  | "imageSrc"
   | "price";
 export enum STEPS {
   CATEGORY = 0,

@@ -1,17 +1,13 @@
-"use client";
+import Link from "next/link";
 import { FC } from "react";
 import { MdBeenhere } from "react-icons/md";
-import { SearchBar } from "./SearchBar";
-import { UserMenu } from "./UserMenu";
 
-import Link from "next/link";
+interface RentHeaderProps {}
 
-interface NavBarProps {}
-
-const NavBar: FC<NavBarProps> = ({}) => {
+const RentHeader: FC<RentHeaderProps> = ({}) => {
   return (
     <div className="w-full bg-slate-100 py-5 shadow-sm h-20 border-b-[1px] border-slate-300">
-      <div className="flex flex-row justify-between items-center my-auto h-10 px-6 md:px-16">
+      <div className="flex flex-row justify-between items-start my-auto h-10 px-6 md:px-16">
         <Link href="/">
           <div className="hidden sm:flex flex-row items-center">
             <MdBeenhere
@@ -23,16 +19,10 @@ const NavBar: FC<NavBarProps> = ({}) => {
             </div>
           </div>
         </Link>
-        <SearchBar />
-        <div className="flex flex-row justify-end items-center gap-5">
-          <div className="hidden min-w-fit sm:block rounded-full hover:bg-slate-200 px-3 py-1 cursor-pointer">
-            Become a Host
-          </div>
-          <UserMenu />
-        </div>
+        <div className="flex flex-row justify-end items-center gap-5"></div>
       </div>
     </div>
   );
 };
 
-export { NavBar };
+export { RentHeader };

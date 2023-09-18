@@ -8,6 +8,7 @@ interface ButtonProps {
   className?: string;
   children: ReactNode;
   isLoading?: boolean;
+  disabled?: boolean;
   hasIcon?: boolean;
   icon?: ReactNode;
   onClick?: () => void;
@@ -25,6 +26,7 @@ const Button: FC<ButtonProps> = ({
   className,
   type,
   isLoading,
+  disabled,
   width,
   icon,
   hasIcon = false,
@@ -34,9 +36,10 @@ const Button: FC<ButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
+      disabled={disabled}
       className={clsx(
         `px-5 py-2 text-lg rounded-lg inline-flex justify-between transition items-center gap-3`,
-        `focus:outline-none focus:ring-2 focus:ring-offset-2`,
+        `focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:bg-slate-600 disabled:text-slate-400`,
         styles[variant],
         styles[width],
         className
