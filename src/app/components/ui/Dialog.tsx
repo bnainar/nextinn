@@ -17,6 +17,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
         <DialogPrimitive.Content
           {...props}
           ref={forwardedRef}
+          onEscapeKeyDown={(e) => e.preventDefault()}
           className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] 
       max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] 
       rounded-[6px] bg-slate-100 p-[0px] 
