@@ -8,14 +8,19 @@ import { ImageStep } from "./steps/ImageStep";
 import { DescStep } from "./steps/DescStep";
 import { PriceStep } from "./steps/PriceStep";
 import useRentFormStore from "@/app/stores/rentstore";
+import toast from "react-hot-toast";
+
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface NewListingModalProps {}
 
 const NewListingModal: FC<NewListingModalProps> = ({}) => {
+  const router = useRouter();
   const [step, setStep] = useState(STEPS.CATEGORY);
 
   const formData = useRentFormStore((state) => state.formData);
-  const setFormData = useRentFormStore((state) => state.setFormData);
+  const resetForm = useRentFormStore((state) => state.resetForm);
 
   const handleNext = (data: any) => {
     setStep(step + 1);
@@ -23,6 +28,19 @@ const NewListingModal: FC<NewListingModalProps> = ({}) => {
 
   const handlePrevious = () => {
     setStep(step - 1);
+  };
+  const onSubmit = () => {
+    axios
+      .post("/api/listing", formData)
+      .then(() => {
+        toast.success("Listing created!");
+        resetForm();
+        router.push("/");
+      })
+      .catch(() => {
+        toast.error("Failed to create a listing");
+        console.error("Failed to create a listing");
+      });
   };
 
   return (
@@ -44,7 +62,9 @@ const NewListingModal: FC<NewListingModalProps> = ({}) => {
       {step == STEPS.DESC && (
         <DescStep onNext={handleNext} onPrevious={handlePrevious} />
       )}
-      {step == STEPS.PRICE && <PriceStep onPrevious={handlePrevious} />}
+      {step == STEPS.PRICE && (
+        <PriceStep onPrevious={handlePrevious} onSubmit={onSubmit} />
+      )}
     </div>
   );
 };

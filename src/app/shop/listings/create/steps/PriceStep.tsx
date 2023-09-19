@@ -1,17 +1,24 @@
-import { Input } from "@/app/components/ui/Input";
+"use client";
+import * as z from "zod";
+import { useState } from "react";
+import { useForm, FieldValues } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { StepHeader } from "../ui/StepHeader";
-import { useForm, FieldValues, UseFormRegister } from "react-hook-form";
+import { Input } from "@/app/components/ui/Input";
 import useRentFormStore from "@/app/stores/rentstore";
 import { Button } from "@/app/components/ui/Button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-const schema = z.object({ price: z.number().gt(0).lt(1000) });
+import { useRouter } from "next/navigation";
+
+const schema = z.object({ price: z.number().gt(5).lt(3000) });
+
 interface PriceStepProps {
   onPrevious: () => void;
+  onSubmit: () => void;
 }
 
-const PriceStep: React.FC<PriceStepProps> = ({ onPrevious }) => {
+const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
   const formData = useRentFormStore((state) => state.formData);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     handleSubmit,
@@ -25,9 +32,12 @@ const PriceStep: React.FC<PriceStepProps> = ({ onPrevious }) => {
     resolver: zodResolver(schema),
   });
   const setFormData = useRentFormStore((state) => state.setFormData);
+  const router = useRouter();
   const onSubmitStep = (price: any) => {
-    setFormData({ price });
-    console.log("Done!", formData);
+    setFormData(price);
+    setIsLoading(true);
+    onSubmit();
+    setIsLoading(false);
   };
   return (
     <form onSubmit={handleSubmit(onSubmitStep)}>
@@ -55,6 +65,7 @@ const PriceStep: React.FC<PriceStepProps> = ({ onPrevious }) => {
           variant="filled"
           width="content"
           type="submit"
+          isLoading={isLoading}
           className="mt-3 text-center"
         >
           Submit

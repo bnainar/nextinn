@@ -7,6 +7,9 @@ import { useForm, FieldValues } from "react-hook-form";
 import { StepHeader } from "../ui/StepHeader";
 import { Button } from "@/app/components/ui/Button";
 import useRentFormStore from "@/app/stores/rentstore";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+const schema = z.object({ imageSrc: z.string().url() });
 
 declare global {
   var cloudinary: any;
@@ -17,22 +20,26 @@ interface ImageStepProps {
 }
 
 const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
+  const formData = useRentFormStore((state) => state.formData);
+
   const { handleSubmit, watch, setValue } = useForm<FieldValues>({
     defaultValues: {
-      imageSrc: "",
+      imgURL: formData.imgURL,
     },
   });
-  const imageSrc = watch("imageSrc");
+
+  const imgURL = watch("imgURL");
+  console.log(imgURL);
+
   const onUpload = useCallback(
     (res: any) => {
-      setValue("imageSrc", res.info.secure_url);
+      console.log(res);
+
+      setValue("imgURL", res.info.secure_url);
     },
     [setValue]
   );
-  const formData = useRentFormStore((state) => state.formData);
   const setFormData = useRentFormStore((state) => state.setFormData);
-  const oldS =
-    "relative w-full h-52 border-2 border-dashed border-slate-500 bg-slate-200/50 hover:bg-slate-300/40 rounded-lg flex flex-col items-center justify-center gap-2";
   const onSubmitStep = (data: any) => {
     setFormData(data);
     onNext(data);
@@ -49,35 +56,39 @@ const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
         onUpload={onUpload}
         options={{ maxFiles: 1 }}
       >
-        {({ open }) => {
+        {({ open, error }) => {
           const handleOnClick = (e: any) => {
+            error && console.log(error);
             e.preventDefault();
-            open();
+            if (open != undefined) open?.();
           };
           return (
-            <div
-              className="relative cursor-pointer hover:brightness-90 transition border-dashed border-2 p-20 border-neutral-300 flex flex-col justify-center items-center gap-4 text-neutral-600"
-              onClick={handleOnClick}
-            >
-              <BiImageAdd size={40} className="mx-auto text-slate-500" />
-              <div className="mx-auto text-slate-500 text-xl">
-                Click to Upload
-              </div>
-              {imageSrc && (
-                <div className="absolute inset-0 w-full h-full">
-                  <Image
-                    fill
-                    style={{ objectFit: "cover" }}
-                    src={imageSrc}
-                    alt="Uploaded image"
-                  />
+            open && (
+              <div
+                className="relative cursor-pointer hover:brightness-90 transition border-dashed border-2 p-20 border-neutral-300 flex flex-col justify-center items-center gap-4 text-neutral-600"
+                onClick={handleOnClick}
+              >
+                <BiImageAdd size={40} className="mx-auto text-slate-500" />
+                <div className="mx-auto text-slate-500 text-xl">
+                  Click to Upload
                 </div>
-              )}
-            </div>
+                {imgURL && (
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      fill
+                      style={{ objectFit: "cover" }}
+                      src={imgURL}
+                      sizes="100"
+                      alt="Uploaded image"
+                    />
+                  </div>
+                )}
+              </div>
+            )
           );
         }}
       </CldUploadWidget>
-      {imageSrc && (
+      {imgURL && (
         <div className="text-slate-500 mt-5">
           To replace above image, click the image again
         </div>
@@ -97,6 +108,7 @@ const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
           width="content"
           type="submit"
           className="mt-3 text-center"
+          disabled={!imgURL}
         >
           Next
         </Button>
