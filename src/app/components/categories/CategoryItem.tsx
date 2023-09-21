@@ -17,7 +17,7 @@ const CategoryItem: FC<CategoryItemProps> = ({
   const router = useRouter();
   const searchParams = useSearchParams();
   const styles = {
-    t: "text-neutral-800 border-neutral-800",
+    t: "text-[#000000] border-[#000000]",
     f: "text-neutral-500 hover:text-neutral-800 border-transparent hover:border-neutral-400",
   };
   const handleClick = useCallback(() => {
@@ -28,7 +28,7 @@ const CategoryItem: FC<CategoryItemProps> = ({
     }
     query = { ...query, category: label };
     // delete selection when clicking the selected item
-    // alternative: remove this and have a default "All" category
+    // alternative: have a default "All" category instead of "unselecting"
     if (searchParams?.get("category") === label) delete query.category;
     const newURL = queryString.stringifyUrl(
       {
@@ -47,7 +47,7 @@ const CategoryItem: FC<CategoryItemProps> = ({
         styles[selected ? "t" : "f"]
       )}
     >
-      <Icon size={20} />
+      <Icon size={25} />
       <span className="text-sm">{label}</span>
     </div>
   );

@@ -11,7 +11,7 @@ interface ButtonProps {
   disabled?: boolean;
   hasIcon?: boolean;
   icon?: ReactNode;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 const styles = {
   filled: "text-white bg-purple-600 hover:bg-purple-700 focus:ring-purple-500",

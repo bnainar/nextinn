@@ -19,9 +19,9 @@ model User {
 
   accounts Account[]
 
-  favIds       String[]       @db.ObjectId
+  favIds       String[]      @db.ObjectId
   listings     Listing[]
-  reservations Reservations[]
+  reservations Reservation[]
 }
 
 // oauth
@@ -58,11 +58,11 @@ model Listing {
   guestsLimit Int
   location    String
 
-  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  reservations Reservations[]
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reservations Reservation[]
 }
 
-model Reservations {
+model Reservation {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   userId    String   @db.ObjectId
   listingId String   @db.ObjectId
