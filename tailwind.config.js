@@ -22,10 +22,15 @@ module.exports = {
         from: { opacity: 0, transform: "translate(-50%, -48%) scale(0.96)" },
         to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
       },
+      spin: {
+        from: { transform: "rotate(0deg)" },
+        to: { transform: "rotate(360deg)" },
+      },
     },
     animation: {
       overlayShow: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+      spin: "spin 1s linear infinite",
     },
   },
   plugins: [],

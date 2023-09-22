@@ -1,7 +1,6 @@
 "use client";
-import { SafeUser } from "@/app/types/stringifiedTypes";
 import { getCountryByValue } from "@/app/utils/countries";
-import { Listing, Reservation } from "@prisma/client";
+import { Listing, Reservation, User } from "@prisma/client";
 import { format } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -15,7 +14,7 @@ interface ListingCardProps {
   onAction?: (actionId: string) => void;
   actionLabel?: string;
   actionId?: string;
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
   disabled?: boolean;
 }
 
@@ -55,7 +54,7 @@ const ListingCard: FC<ListingCardProps> = ({
   return (
     <div
       onClick={() => router.push(`/listings/${listing.id}`)}
-      className="col-span-1 cursor-pointer group"
+      className="col-span-1 cursor-pointer group min-w-full"
     >
       <div className="flex flex-col w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">

@@ -1,4 +1,3 @@
-"use client";
 import { FC } from "react";
 import { MdBeenhere } from "react-icons/md";
 import { SearchBar } from "./SearchBar";
@@ -25,9 +24,12 @@ const NavBar: FC<NavBarProps> = ({}) => {
         </Link>
         <SearchBar />
         <div className="flex flex-row justify-end items-center gap-5">
-          <div className="hidden min-w-fit sm:block rounded-full hover:bg-slate-200 px-3 py-1 cursor-pointer">
+          <Link
+            href="/shop"
+            className="hidden min-w-fit sm:block rounded-full hover:bg-slate-200 px-3 py-1 cursor-pointer"
+          >
             Become a Host
-          </div>
+          </Link>
           <UserMenu />
         </div>
       </div>

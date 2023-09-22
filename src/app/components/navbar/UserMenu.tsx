@@ -6,15 +6,26 @@ import { Avatar } from "../ui/Avatar";
 import { Dialog, DialogTrigger, DialogContent } from "../ui/Dialog";
 import { LoginForm } from "../forms/LoginForm";
 import { signOut, useSession } from "next-auth/react";
-// import { useStore } from "@/app/stores";
+import { useLoginStore } from "@/app/stores/loginModalStore";
 
 interface UserMenuProps {}
 
 const UserMenu: FC<UserMenuProps> = ({}) => {
-  // const { login, popover, setOpenLogin, setPopoverOpen } = useStore((s) => s);
+  // converting login and usermenu to controlled compeonents
+  const userMenuDropdown = useLoginStore((s) => s.userMenuDropdown);
+  const handleUserMenuDropdownChange = useLoginStore(
+    (s) => s.handleUserMenuDropdownChange
+  );
+
+  const loginModal = useLoginStore((s) => s.loginModal);
+  const handleLoginModalChange = useLoginStore((s) => s.handleLoginModalChange);
+
   const { data: session } = useSession();
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root
+      open={userMenuDropdown.isOpen}
+      onOpenChange={handleUserMenuDropdownChange}
+    >
       <DropdownMenu.Trigger asChild>
         <button className="flex items-center justify-between w-12 sm:w-20 py-1 h-12 border-[1px] border-slate-300 active:border-slate-500 sm:gap-2 shadow-sm hover:shadow-md transition-shadow rounded-full">
           <MdMenu className="sm:ml-3 grow sm:grow-0" />
@@ -34,7 +45,10 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
                 <MenuItem onClick={() => signOut()}>Logout</MenuItem>
               </>
             ) : (
-              <Dialog>
+              <Dialog
+                open={loginModal.isOpen}
+                onOpenChange={handleLoginModalChange}
+              >
                 <DialogTrigger asChild>
                   <MenuItem>Login</MenuItem>
                 </DialogTrigger>
