@@ -11,7 +11,7 @@ const ListingGrid: FC<ListingGridProps> = async ({}) => {
   const listings = await getListings();
   const currentUser = await getCurrentUser();
   if (listings.length === 0) {
-    return <EmptyState title="No exact matches" resetFilter />;
+    return <EmptyState title="No exact matches" resetButton />;
   }
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mx-auto mt-4 px-6 md:px-16 overflow-x-auto max-w-7xl">

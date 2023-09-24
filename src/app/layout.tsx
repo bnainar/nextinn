@@ -22,7 +22,7 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className="bg-purple-100">
+      <body className="bg-slate-100">
         <SessionProvider session={session}>{children}</SessionProvider>
       </body>
     </html>
