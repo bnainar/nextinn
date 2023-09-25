@@ -11,7 +11,7 @@ interface ListingHeaderProps {
   imgURL: string;
   location: string;
   price: number;
-  currentUser: User;
+  currentUser?: User | null;
 }
 
 const ListingHeader: FC<ListingHeaderProps> = ({

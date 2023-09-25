@@ -3,6 +3,7 @@ import { EmptyState } from "@/app/components/ui/EmptyState";
 import getListingById from "@/app/utils/getListingById";
 import { ListingPage } from "./ListingPage";
 import getCurrentUser from "@/app/utils/getCurrentUser";
+import getReservations from "@/app/utils/getReservations";
 
 interface Props {
   listingId: string;
@@ -10,6 +11,7 @@ interface Props {
 
 export default async function Page({ params }: { params: Props }) {
   const listing = await getListingById(params);
+  const reservations = await getReservations(params);
   const currentUser = await getCurrentUser();
 
   if (!listing)
@@ -28,7 +30,11 @@ export default async function Page({ params }: { params: Props }) {
   return (
     <>
       <NavBar />
-      <ListingPage listing={listing} currentUser={currentUser} />
+      <ListingPage
+        listing={listing}
+        currentUser={currentUser}
+        reservations={reservations}
+      />
     </>
   );
 }
