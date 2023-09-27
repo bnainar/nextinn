@@ -74,12 +74,12 @@ const ListingCard: FC<ListingCardProps> = ({
         <div className="text-neutral-600">
           {reservationDates ?? listing.category}
         </div>
-        <p>
+        <p className="mb-2">
           <span className="font-semibold">$ {price}</span>
           {!reservation && <span className="text-neutral-700 pl-1">night</span>}
         </p>
         {onAction && actionLabel && (
-          <Button variant="filled" width="full" onClick={handleCancel}>
+          <Button variant="outline" width="full" onClick={handleCancel}>
             {actionLabel}
           </Button>
         )}

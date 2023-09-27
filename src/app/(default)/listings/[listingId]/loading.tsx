@@ -1,3 +1,5 @@
+import { Container } from "@/app/components/ui/Container";
+
 export default function Loading() {
-  return <div>Loading the listing info...</div>;
+  return <Container>Loading the listing info...</Container>;
 }

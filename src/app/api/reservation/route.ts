@@ -3,15 +3,14 @@ import getCurrentUser from "@/app/utils/getCurrentUser";
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
-const schema = z.object({
-  listingId: z.string(),
-  totalPrice: z.number().min(1),
-  startDate: z.coerce.date(),
-  endDate: z.coerce.date(),
-});
-
 export async function POST(req: Request) {
   const body = await req.json();
+  const schema = z.object({
+    listingId: z.string(),
+    totalPrice: z.number().min(1),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date(),
+  });
   try {
     schema.parse(body);
     const {

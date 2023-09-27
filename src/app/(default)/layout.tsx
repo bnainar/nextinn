@@ -20,10 +20,8 @@ export default async function DefaultLayout({
     <html lang="en">
       <body className="bg-slate-100">
         <SessionProvider session={session}>
-          <div>
-            <NavBar />
-            {children}
-          </div>
+          <NavBar />
+          <main>{children}</main>
         </SessionProvider>
         <CustomToaster />
       </body>

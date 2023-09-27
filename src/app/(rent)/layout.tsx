@@ -18,7 +18,7 @@ export default async function RentLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className="bg-slate-100">
+      <body className="bg-green-50">
         <SessionProvider session={session}>
           <main>
             <NavBar rentPage />
