@@ -5,11 +5,13 @@ import { UserMenu } from "./UserMenu";
 
 import Link from "next/link";
 
-interface NavBarProps {}
+interface NavBarProps {
+  rentPage?: boolean;
+}
 
-const NavBar: FC<NavBarProps> = ({}) => {
+const NavBar: FC<NavBarProps> = ({ rentPage = false }) => {
   return (
-    <div className="w-full bg-slate-100 py-5 shadow-sm h-20 border-b-[1px] border-slate-300">
+    <nav className="w-full bg-slate-100 py-5 shadow-sm h-20 border-b-[1px] border-slate-300">
       <div className="flex flex-row justify-between items-center my-auto h-10 px-6 md:px-16">
         <Link href="/">
           <div className="hidden sm:flex flex-row items-center">
@@ -22,18 +24,20 @@ const NavBar: FC<NavBarProps> = ({}) => {
             </div>
           </div>
         </Link>
-        <SearchBar />
+        {!rentPage && <SearchBar />}
         <div className="flex flex-row justify-end items-center gap-5">
-          <Link
-            href="/shop"
-            className="hidden min-w-fit sm:block rounded-full hover:bg-slate-200 px-3 py-1 cursor-pointer"
-          >
-            Become a Host
-          </Link>
+          {!rentPage && (
+            <Link
+              href="/new-listing"
+              className="hidden min-w-fit sm:block rounded-full hover:bg-slate-200 px-3 py-1 cursor-pointer"
+            >
+              Become a Host
+            </Link>
+          )}
           <UserMenu />
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

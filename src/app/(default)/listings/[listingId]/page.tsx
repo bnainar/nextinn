@@ -16,25 +16,19 @@ export default async function Page({ params }: { params: Props }) {
 
   if (!listing)
     return (
-      <>
-        <NavBar />
-        <EmptyState
-          title="Listing not found"
-          subtitle="The listing may not exist. Try checking the listing id"
-          resetButton
-          resetLabel="Explore more listings"
-        />
-      </>
+      <EmptyState
+        title="Listing not found"
+        subtitle="The listing may not exist. Try checking the listing id"
+        resetButton
+        resetLabel="Explore more listings"
+      />
     );
 
   return (
-    <>
-      <NavBar />
-      <ListingPage
-        listing={listing}
-        currentUser={currentUser}
-        reservations={reservations}
-      />
-    </>
+    <ListingPage
+      listing={listing}
+      currentUser={currentUser}
+      reservations={reservations}
+    />
   );
 }
