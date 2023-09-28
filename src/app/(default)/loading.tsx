@@ -4,7 +4,7 @@ import { ListingGridLoading } from "../components/ui/loading/ListingGridLoading"
 export default function Loading() {
   return (
     <Container>
-      <div className="flex flex-row gap-5 justify-between items-center my-4 mx-auto overflow-x-auto max-w-5xl">
+      <div className="flex flex-row gap-5 justify-between items-center mt-4 mb-8 mx-auto overflow-x-auto max-w-5xl">
         {Array(6)
           .fill(0)
           .map((_, i) => (

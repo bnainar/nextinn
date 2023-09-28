@@ -41,8 +41,12 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
                 <Link href="/trips">
                   <MenuItem>My Trips</MenuItem>
                 </Link>
-                <MenuItem>My Favs</MenuItem>
-                <MenuItem>My Listings</MenuItem>
+                <Link href="/favorites">
+                  <MenuItem>My Favs</MenuItem>
+                </Link>
+                <Link href="/properties">
+                  <MenuItem>My Listings</MenuItem>
+                </Link>
                 <Link href="/reservations">
                   <MenuItem>Manage Reservations</MenuItem>
                 </Link>
@@ -72,7 +76,7 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
 export { UserMenu };
 
 interface MenuItemProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   onClick?: () => void;
 }
 

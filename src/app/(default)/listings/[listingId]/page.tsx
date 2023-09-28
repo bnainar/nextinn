@@ -5,11 +5,11 @@ import { ListingPage } from "./ListingPage";
 import getCurrentUser from "@/app/utils/getCurrentUser";
 import getReservations from "@/app/utils/getReservations";
 
-interface Props {
+interface IParams {
   listingId: string;
 }
 
-export default async function Page({ params }: { params: Props }) {
+export default async function Page({ params }: { params: IParams }) {
   const listing = await getListingById(params);
   const reservations = await getReservations(params);
   const currentUser = await getCurrentUser();
