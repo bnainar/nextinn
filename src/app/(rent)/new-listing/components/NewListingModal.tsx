@@ -45,7 +45,7 @@ const NewListingModal: FC<NewListingModalProps> = ({}) => {
 
   return (
     <div className="max-w-lg m-auto mt-10">
-      <pre className="text-xs font-mono">
+      <pre className="text-xs font-mono hidden">
         {JSON.stringify(formData, null, 2)}
       </pre>
 

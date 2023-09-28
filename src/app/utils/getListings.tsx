@@ -1,8 +1,18 @@
 import { db } from "./db";
 
-export default async function getListings() {
+interface IParams {
+  userId?: string;
+}
+export default async function getListings({ userId }: IParams) {
   try {
-    return await db.listing.findMany({ orderBy: { createdAt: "desc" } });
+    let query: any = {};
+
+    if (userId) query.userId = userId;
+
+    return await db.listing.findMany({
+      where: query,
+      orderBy: { createdAt: "desc" },
+    });
   } catch (error: any) {
     console.log("cant fetch listings", error);
     throw new Error(error);

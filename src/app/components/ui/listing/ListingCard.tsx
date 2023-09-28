@@ -68,20 +68,29 @@ const ListingCard: FC<ListingCardProps> = ({
             <FavButton listingId={listing.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="font-semibold text-lg mt-4">
+        <div className="text-neutral-900 font-medium text-xl mt-4">
           {location?.region}, {location?.label}
         </div>
-        <div className="text-neutral-600">
+        <div className="text-neutral-600 text-lg">
           {reservationDates ?? listing.category}
         </div>
-        <p>
-          <span className="font-semibold">$ {price}</span>
-          {!reservation && <span className="text-neutral-700 pl-1">night</span>}
+        <p className="mb-2">
+          <span className="font-semibold text-lg">$ {price}</span>
+          {!reservation && (
+            <span className="text-neutral-600 pl-1 text-lg">night</span>
+          )}
         </p>
         {onAction && actionLabel && (
-          <Button variant="filled" width="full" onClick={handleCancel}>
-            {actionLabel}
-          </Button>
+          <div className="p-2">
+            <Button
+              variant="outline"
+              width="full"
+              onClick={handleCancel}
+              isLoading={disabled}
+            >
+              {actionLabel}
+            </Button>
+          </div>
         )}
       </div>
     </div>

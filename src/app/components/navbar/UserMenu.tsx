@@ -7,6 +7,7 @@ import { Dialog, DialogTrigger, DialogContent } from "../ui/Dialog";
 import { LoginForm } from "../forms/LoginForm";
 import { signOut, useSession } from "next-auth/react";
 import { useLoginStore } from "@/app/stores/loginModalStore";
+import Link from "next/link";
 
 interface UserMenuProps {}
 
@@ -37,10 +38,18 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
           <div className="w-auto py-1">
             {session ? (
               <>
-                <MenuItem>My Trips</MenuItem>
-                <MenuItem>My Favs</MenuItem>
-                <MenuItem>My Listings</MenuItem>
-                <MenuItem>My Reservations</MenuItem>
+                <Link href="/trips">
+                  <MenuItem>My Trips</MenuItem>
+                </Link>
+                <Link href="/favorites">
+                  <MenuItem>My Favs</MenuItem>
+                </Link>
+                <Link href="/properties">
+                  <MenuItem>My Listings</MenuItem>
+                </Link>
+                <Link href="/reservations">
+                  <MenuItem>Manage Reservations</MenuItem>
+                </Link>
                 <hr />
                 <MenuItem onClick={() => signOut()}>Logout</MenuItem>
               </>
@@ -67,7 +76,7 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
 export { UserMenu };
 
 interface MenuItemProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   onClick?: () => void;
 }
 
