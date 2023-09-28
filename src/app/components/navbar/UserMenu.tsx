@@ -43,7 +43,9 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
                 </Link>
                 <MenuItem>My Favs</MenuItem>
                 <MenuItem>My Listings</MenuItem>
-                <MenuItem>My Reservations</MenuItem>
+                <Link href="/reservations">
+                  <MenuItem>Manage Reservations</MenuItem>
+                </Link>
                 <hr />
                 <MenuItem onClick={() => signOut()}>Logout</MenuItem>
               </>

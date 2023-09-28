@@ -8,12 +8,17 @@ import toast from "react-hot-toast";
 
 type ReservationAndListing = Reservation & { listing: Listing };
 
-interface TripsGridProps {
+interface ReservationGridProps {
   currentUser: User;
   reservations: ReservationAndListing[];
+  actionLabel: string;
 }
 
-const TripsGrid: FC<TripsGridProps> = ({ currentUser, reservations }) => {
+const ReservationGrid: FC<ReservationGridProps> = ({
+  currentUser,
+  reservations,
+  actionLabel,
+}) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
@@ -22,7 +27,7 @@ const TripsGrid: FC<TripsGridProps> = ({ currentUser, reservations }) => {
       setDeletingId(id);
 
       axios
-        .delete(`/api/reservations/${id}`)
+        .delete(`/api/reservation/${id}`)
         .then(() => {
           toast.success("Reservation cancelled");
           router.refresh();
@@ -46,7 +51,7 @@ const TripsGrid: FC<TripsGridProps> = ({ currentUser, reservations }) => {
           listing={r.listing}
           reservation={r}
           actionId={r.id}
-          actionLabel="Cancel Reservation"
+          actionLabel={actionLabel}
           onAction={onCancel}
           disabled={r.id === deletingId}
           currentUser={currentUser}
@@ -56,4 +61,4 @@ const TripsGrid: FC<TripsGridProps> = ({ currentUser, reservations }) => {
   );
 };
 
-export { TripsGrid };
+export { ReservationGrid };

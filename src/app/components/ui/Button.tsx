@@ -18,7 +18,7 @@ const styles = {
   filled:
     "text-white bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 disabled:brightness-50",
   outline:
-    "text-gray-800 border border-neutral-700 hover:border-gray-950 hover:bg-gray-300 focus:ring-gray-500",
+    "text-gray-800 border border-neutral-700 hover:border-gray-950 hover:bg-gray-300 focus:ring-gray-500 disabled:brightness-50",
   full: "w-full",
   content: "w-max",
 };
