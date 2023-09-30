@@ -8,7 +8,7 @@ export default function Loading() {
         {Array(6)
           .fill(0)
           .map((_, i) => (
-            <div key={i} className="h-16 w-16 bg-slate-200 rounded-xl"></div>
+            <div key={i} className="h-16 w-16 bg-slate-200 rounded-full"></div>
           ))}
       </div>
       <ListingGridLoading />

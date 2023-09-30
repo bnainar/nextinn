@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { CategoryStep } from "./steps/CategoryStep";
 import { LocationStep } from "./steps/LocationStep";
 import { STEPS } from "@/app/types/NewListingTypes";
@@ -20,34 +20,47 @@ const NewListingModal: FC<NewListingModalProps> = ({}) => {
   const [step, setStep] = useState(STEPS.CATEGORY);
 
   const formData = useRentFormStore((state) => state.formData);
+  const setFormData = useRentFormStore((state) => state.setFormData);
   const resetForm = useRentFormStore((state) => state.resetForm);
 
-  const handleNext = (data: any) => {
+  const handleNext = (data?: any) => {
+    if (data) setFormData(data);
     setStep(step + 1);
   };
 
   const handlePrevious = () => {
     setStep(step - 1);
   };
-  const onSubmit = () => {
-    axios
-      .post("/api/listing", formData)
-      .then(() => {
-        toast.success("Listing created!");
+  const onSubmit = (data: any) => {
+    setFormData(data);
+
+    const body = { ...formData, ...data };
+    console.log("final", body);
+
+    const promise = axios.post("/api/listing", body);
+    toast.promise(promise, {
+      loading: "Creating listing...",
+      success: ({ data }) => {
+        console.log(data);
         resetForm();
-        router.push("/");
-      })
-      .catch(() => {
-        toast.error("Failed to create a listing");
-        console.error("Failed to create a listing");
-      });
+        router.push("/properties");
+        return "Your listing is created";
+      },
+      error: "Unable to create listing",
+    });
   };
 
+  useEffect(() => {
+    toast("Page loaded");
+  }, []);
   return (
     <div className="max-w-lg m-auto mt-10">
-      <pre className="text-xs font-mono hidden">
-        {JSON.stringify(formData, null, 2)}
-      </pre>
+      <details className="text-xs font-mono absolute bottom-10 left-2 -z-50 h-48 w-[40vw] overflow-scroll">
+        <pre>
+          <summary>FormData</summary>
+          {JSON.stringify(formData, null, 2)}
+        </pre>
+      </details>
 
       {step == STEPS.CATEGORY && <CategoryStep onNext={handleNext} />}
       {step == STEPS.LOCATION && (

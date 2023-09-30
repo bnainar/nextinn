@@ -1,11 +1,10 @@
-"use client";
 import { FC } from "react";
 import { Toaster } from "react-hot-toast";
 
 export const CustomToaster: FC = () => {
   return (
     <Toaster
-      position="bottom-center"
+      position="bottom-right"
       toastOptions={{
         style: {
           border: "1px solid #713200",
@@ -30,8 +29,9 @@ export const CustomToaster: FC = () => {
         },
         loading: {
           style: {
-            border: "2px solid #dc2626",
-            color: "#ef4444",
+            border: "2px solid #64748b",
+            color: "#404040",
+            backgroundColor: "#e2e8f0",
           },
         },
       }}

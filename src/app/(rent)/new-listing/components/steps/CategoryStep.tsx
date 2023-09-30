@@ -10,24 +10,19 @@ import { Button } from "@/app/components/ui/Button";
 interface CategoryStepProps {
   onNext: (data: any) => void;
 }
-
+// setFormData({ category: label })
 const CategoryStep: FC<CategoryStepProps> = ({ onNext }) => {
   const formData = useRentFormStore((state) => state.formData);
 
-  const { handleSubmit } = useForm<FieldValues>({
+  const { handleSubmit, setValue, watch } = useForm<FieldValues>({
     defaultValues: {
       category: formData.category,
     },
   });
-  const setFormData = useRentFormStore((state) => state.setFormData);
-  const onSubmitStep = (data: any) => {
-    onNext(data);
-  };
-  const category = formData.category;
-  // const category = watch("category");
+
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmitStep)} className="mb-3">
+      <form onSubmit={handleSubmit(onNext)} className="mb-3">
         <StepHeader
           title="Which of these best describe your place?"
           subtitle="Pick a category"
@@ -38,8 +33,8 @@ const CategoryStep: FC<CategoryStepProps> = ({ onNext }) => {
             <CategoryCardSelect
               key={c.label}
               data={c}
-              selected={category === c.label}
-              handleSelect={(label) => setFormData({ category: label })}
+              selected={watch("category") === c.label}
+              handleSelect={(label) => setValue("category", label)}
             />
           ))}
         </div>
@@ -49,7 +44,7 @@ const CategoryStep: FC<CategoryStepProps> = ({ onNext }) => {
             width="content"
             type="submit"
             className="mt-3 text-center"
-            disabled={formData.category === ""}
+            disabled={watch("category") === ""}
           >
             Next
           </Button>

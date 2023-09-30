@@ -14,29 +14,18 @@ interface InfoStepProps {
 const InfoStep: FC<InfoStepProps> = ({ onPrevious, onNext }) => {
   const formData = useRentFormStore((state) => state.formData);
 
-  const {
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<FieldValues>({
+  const { handleSubmit, watch, setValue } = useForm<FieldValues>({
     defaultValues: {
       roomCount: formData.roomCount,
       bathCount: formData.bathCount,
       guestsLimit: formData.guestsLimit,
     },
   });
-  const setFormData = useRentFormStore((state) => state.setFormData);
-  const onSubmitStep = (data: any) => {
-    setFormData(data);
-
-    onNext(data);
-  };
   const roomCount = watch("roomCount");
   const bathCount = watch("bathCount");
   const guestsLimit = watch("guestsLimit");
   return (
-    <form onSubmit={handleSubmit(onSubmitStep)}>
+    <form onSubmit={handleSubmit(onNext)}>
       <StepHeader
         title="Share some info about your place"
         subtitle="Such as number of guests allowed, etc."

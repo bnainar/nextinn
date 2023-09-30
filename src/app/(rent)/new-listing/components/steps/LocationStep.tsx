@@ -25,11 +25,8 @@ const LocationStep: FC<LocationStepProps> = ({ onPrevious, onNext }) => {
       location: formData.location,
     },
   });
-  const setFormData = useRentFormStore((state) => state.setFormData);
   const onSubmitStep = (data: any) => {
-    console.log("loc", data);
-    setFormData({ location: data.location });
-    onNext(data);
+    onNext({ location: data.location });
   };
   const location = watch("location");
   return (

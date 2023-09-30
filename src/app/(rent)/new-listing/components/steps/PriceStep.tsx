@@ -7,13 +7,12 @@ import { StepHeader } from "../ui/StepHeader";
 import { Input } from "@/app/components/ui/Input";
 import useRentFormStore from "@/app/stores/rentstore";
 import { Button } from "@/app/components/ui/Button";
-import { useRouter } from "next/navigation";
 
 const schema = z.object({ price: z.number().gt(5).lt(3000) });
 
 interface PriceStepProps {
   onPrevious: () => void;
-  onSubmit: () => void;
+  onSubmit: (data: any) => void;
 }
 
 const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
@@ -24,6 +23,7 @@ const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
     handleSubmit,
     register,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -31,12 +31,13 @@ const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
     },
     resolver: zodResolver(schema),
   });
-  const setFormData = useRentFormStore((state) => state.setFormData);
-  const router = useRouter();
-  const onSubmitStep = (price: any) => {
-    setFormData(price);
+  console.log(watch("price"));
+
+  const onSubmitStep = (data: any) => {
     setIsLoading(true);
-    onSubmit();
+
+    onSubmit(data);
+
     setIsLoading(false);
   };
   return (

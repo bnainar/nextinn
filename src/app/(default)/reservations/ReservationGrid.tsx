@@ -26,20 +26,19 @@ const ReservationGrid: FC<ReservationGridProps> = ({
     (id: string) => {
       setDeletingId(id);
 
-      axios
-        .delete(`/api/reservation/${id}`)
-        .then(() => {
-          toast.success("Reservation cancelled");
-          router.refresh();
-        })
-        .catch((error) => {
-          console.log(error?.response?.data?.error);
-
-          toast.error("Failed to cancel reservation");
-        })
-        .finally(() => {
+      toast.promise(axios.delete(`/api/reservation/${id}`), {
+        loading: "Cancelling...",
+        success: () => {
           setDeletingId("");
-        });
+          router.refresh();
+          return "Reservation cancelled";
+        },
+        error: (error) => {
+          console.log(error?.response?.data?.error);
+          setDeletingId("");
+          return "Failed to cancel reservation";
+        },
+      });
     },
     [router]
   );

@@ -27,15 +27,18 @@ const useFav = ({ listingId, currentUser }: useFavProps) => {
         login(true);
         return;
       }
-      try {
-        if (isFav) await axios.delete(`/api/favorite/${listingId}`);
-        else await axios.post(`/api/favorite/${listingId}`);
-        toast.success("Toggled favorite");
-        router.refresh();
-      } catch (e: any) {
-        toast.error("Failed to toggle favorite");
-        console.log(e);
-      }
+      let promise: Promise<any>;
+      if (isFav) promise = axios.delete(`/api/favorite/${listingId}`);
+      else promise = axios.post(`/api/favorite/${listingId}`);
+
+      toast.promise(promise, {
+        loading: "Loading...",
+        success: () => {
+          router.refresh();
+          return "Toggled favorite";
+        },
+        error: "Failed to toggle favorite",
+      });
     },
     [currentUser, login, isFav, listingId, router]
   );
