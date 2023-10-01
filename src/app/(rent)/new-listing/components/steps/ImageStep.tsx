@@ -7,45 +7,31 @@ import { useForm, FieldValues } from "react-hook-form";
 import { StepHeader } from "../ui/StepHeader";
 import { Button } from "@/app/components/ui/Button";
 import useRentFormStore from "@/app/stores/rentstore";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-const schema = z.object({ imageSrc: z.string().url() });
 
 declare global {
   var cloudinary: any;
 }
 interface ImageStepProps {
   onPrevious: () => void;
-  onNext: (data: any) => void;
+  onNext: (data?: any) => void;
 }
 
 const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
-  const formData = useRentFormStore((state) => state.formData);
+  const imgURL = useRentFormStore((state) => state.formData.imgURL);
+  const setFormData = useRentFormStore((state) => state.setFormData);
 
-  const { handleSubmit, watch, setValue } = useForm<FieldValues>({
-    defaultValues: {
-      imgURL: formData.imgURL,
-    },
+  const { handleSubmit } = useForm<FieldValues>({
+    defaultValues: { imgURL },
   });
-
-  const imgURL = watch("imgURL");
-  console.log(imgURL);
 
   const onUpload = useCallback(
     (res: any) => {
-      console.log(res);
-
-      setValue("imgURL", res.info.secure_url);
+      setFormData({ imgURL: res.info.secure_url });
     },
-    [setValue]
+    [setFormData]
   );
-  const setFormData = useRentFormStore((state) => state.setFormData);
-  const onSubmitStep = (data: any) => {
-    setFormData(data);
-    onNext(data);
-  };
   return (
-    <form onSubmit={handleSubmit(onSubmitStep)}>
+    <form onSubmit={handleSubmit(() => onNext())}>
       <StepHeader
         title="Share a picture of your place"
         subtitle="Pick something distinctive and recognizable"
@@ -60,7 +46,7 @@ const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
           const handleOnClick = (e: any) => {
             error && console.log(error);
             e.preventDefault();
-            if (open != undefined) open?.();
+            if (open && open != undefined) open?.();
           };
           return (
             open && (

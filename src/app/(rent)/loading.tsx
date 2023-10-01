@@ -1,3 +1,5 @@
+import { Container } from "../components/ui/Container";
+
 export default function Loading() {
-  return <div>Loading...</div>;
+  return <Container>Loading...</Container>;
 }

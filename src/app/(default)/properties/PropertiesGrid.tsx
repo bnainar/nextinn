@@ -18,21 +18,20 @@ const PropertiesGrid: FC<PropertiesGridProps> = ({ listings, currentUser }) => {
   const handleDelete = useCallback(
     (id: string) => {
       setDeletingId(id);
-
-      axios
-        .delete(`/api/listing/${id}`)
-        .then(() => {
-          toast.success("Listing deleted");
-          router.refresh();
-        })
-        .catch((error) => {
-          console.log(error?.response?.data?.error);
-
-          toast.error("Failed to delete listing");
-        })
-        .finally(() => {
+      toast.promise(axios.delete(`/api/listing/${id}`), {
+        loading: "Deleting...",
+        success: () => {
           setDeletingId("");
-        });
+          router.refresh();
+          return "Listing deleted";
+        },
+        error: (error) => {
+          console.log(error?.response?.data?.error);
+          setDeletingId("");
+
+          return "Failed to delete listing";
+        },
+      });
     },
     [router]
   );

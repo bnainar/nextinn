@@ -82,19 +82,20 @@ const ListingPage: FC<ListingPageProps> = ({
       endDate: dateRange.endDate,
       listingId: listing.id,
     };
-    axios
-      .post("/api/reservation", data)
-      .then(() => {
-        toast.success("Listing reserved!");
+
+    toast.promise(axios.post("/api/reservation", data), {
+      loading: "Reserving...",
+      success: () => {
         setDateRange(initialDateRange);
         router.push("/trips");
-      })
-      .catch(() => {
-        toast.error("Something went wrong.");
-      })
-      .finally(() => {
         setIsLoading(false);
-      });
+        return "Reservation created";
+      },
+      error: () => {
+        setIsLoading(false);
+        return "Failed to create reservation";
+      },
+    });
   }, [
     currentUser,
     login,

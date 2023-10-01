@@ -5,17 +5,20 @@ import useRentFormStore from "@/app/stores/rentstore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/app/components/ui/Button";
 import * as z from "zod";
+
 const schema = z.object({
   title: z.string().min(3, { message: "Must be atleast 3 chars long" }),
   desc: z.string().min(3, { message: "Must be atleast 3 chars long" }),
 });
+
 interface DescStepProps {
   onPrevious: () => void;
   onNext: (data: any) => void;
 }
 
 const DescStep: React.FC<DescStepProps> = ({ onPrevious, onNext }) => {
-  const formData = useRentFormStore((state) => state.formData);
+  const title = useRentFormStore((state) => state.formData.title);
+  const desc = useRentFormStore((state) => state.formData.desc);
 
   const {
     handleSubmit,
@@ -24,19 +27,13 @@ const DescStep: React.FC<DescStepProps> = ({ onPrevious, onNext }) => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      title: formData.title,
-      desc: formData.desc,
+      title,
+      desc,
     },
     resolver: zodResolver(schema),
   });
-  const setFormData = useRentFormStore((state) => state.setFormData);
-  const onSubmitStep = (data: any) => {
-    console.log("desc step", data);
-    setFormData(data);
-    onNext(data);
-  };
   return (
-    <form onSubmit={handleSubmit(onSubmitStep)}>
+    <form onSubmit={handleSubmit(onNext)}>
       <StepHeader
         title="How'd you name your place?"
         subtitle="Keep it memorable!"
@@ -47,7 +44,7 @@ const DescStep: React.FC<DescStepProps> = ({ onPrevious, onNext }) => {
         id="title"
         register={register}
         errors={errors}
-        value={formData.title}
+        value={title}
         onChange={(e) => setValue("title", e.target.value)}
       />
       <Input
@@ -56,7 +53,7 @@ const DescStep: React.FC<DescStepProps> = ({ onPrevious, onNext }) => {
         id="desc"
         register={register}
         errors={errors}
-        value={formData.desc}
+        value={desc}
         onChange={(e) => setValue("desc", e.target.value)}
       />
       <div className="flex flex-row items-end float-right gap-5">
