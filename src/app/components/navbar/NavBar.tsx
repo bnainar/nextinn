@@ -1,15 +1,15 @@
 import { FC } from "react";
 import { MdBeenhere } from "react-icons/md";
-import { SearchBar } from "./SearchBar";
 import { UserMenu } from "./UserMenu";
 
 import Link from "next/link";
+import { SearchModal } from "../search/SearchModal";
 
 interface NavBarProps {
   rentPage?: boolean;
 }
 
-const NavBar: FC<NavBarProps> = ({ rentPage = false }) => {
+export const NavBar: FC<NavBarProps> = ({ rentPage = false }) => {
   return (
     <nav className="w-full bg-slate-100 py-5 shadow-sm h-20 border-b-[1px] border-slate-300">
       <div className="flex flex-row justify-between items-center my-auto h-10 px-6 md:px-16">
@@ -24,7 +24,7 @@ const NavBar: FC<NavBarProps> = ({ rentPage = false }) => {
             </div>
           </div>
         </Link>
-        {!rentPage && <SearchBar />}
+        {!rentPage && <SearchModal />}
         <div className="flex flex-row justify-end items-center gap-5">
           {!rentPage && (
             <Link
@@ -40,5 +40,3 @@ const NavBar: FC<NavBarProps> = ({ rentPage = false }) => {
     </nav>
   );
 };
-
-export { NavBar };

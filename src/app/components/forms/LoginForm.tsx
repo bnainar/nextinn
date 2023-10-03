@@ -1,13 +1,10 @@
 "use client";
-import { FC } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "../ui/Button";
 import { AiFillGithub } from "react-icons/ai";
 import { signIn } from "next-auth/react";
 
-interface LoginFormProps {}
-
-const LoginForm: FC<LoginFormProps> = ({}) => {
+export const LoginForm = () => {
   return (
     <div>
       <div className="mb-3">
@@ -21,8 +18,7 @@ const LoginForm: FC<LoginFormProps> = ({}) => {
           variant="outline"
           type="submit"
           width="full"
-          hasIcon={true}
-          icon={<FcGoogle fontSize="1.25rem" />}
+          icon={FcGoogle}
           onClick={() => signIn("google")}
         >
           Login with Google
@@ -31,8 +27,7 @@ const LoginForm: FC<LoginFormProps> = ({}) => {
           variant="outline"
           type="submit"
           width="full"
-          hasIcon={true}
-          icon={<AiFillGithub fontSize="1.25rem" />}
+          icon={AiFillGithub}
           onClick={() => signIn("github")}
         >
           Login with GitHub
@@ -41,5 +36,3 @@ const LoginForm: FC<LoginFormProps> = ({}) => {
     </div>
   );
 };
-
-export { LoginForm };

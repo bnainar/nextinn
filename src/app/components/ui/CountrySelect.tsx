@@ -5,13 +5,18 @@ import Select from "react-select";
 interface CountrySelectProps {
   location?: CountrySelectValue;
   onChange: (value: CountrySelectValue) => void;
+  placeholder?: string;
 }
 
-const CountrySelect: FC<CountrySelectProps> = ({ location, onChange }) => {
+const CountrySelect: FC<CountrySelectProps> = ({
+  location,
+  onChange,
+  placeholder = "Select a country",
+}) => {
   return (
     <div>
       <Select
-        placeholder="Select a country"
+        placeholder={placeholder}
         value={location}
         onChange={(newValue: any) => onChange(newValue)}
         isClearable

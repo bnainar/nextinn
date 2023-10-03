@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 
@@ -8,7 +8,10 @@ interface AvatarProps {
   className?: string;
 }
 
-const Avatar: FC<AvatarProps> = ({ src, className }) => {
+export const Avatar: FC<AvatarProps> = ({
+  src = "/images/placeholder.jpg",
+  className,
+}) => {
   const styles = clsx("rounded-full hidden sm:block", className);
   const [imgSrc, setImgSrc] = useState(src as string);
 
@@ -23,5 +26,3 @@ const Avatar: FC<AvatarProps> = ({ src, className }) => {
     />
   );
 };
-
-export { Avatar };

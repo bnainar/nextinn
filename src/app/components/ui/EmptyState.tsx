@@ -9,7 +9,7 @@ interface EmptyStateProps {
   resetLabel?: string;
 }
 
-const EmptyState: FC<EmptyStateProps> = ({
+export const EmptyState: FC<EmptyStateProps> = ({
   title,
   subtitle,
   resetButton,
@@ -33,5 +33,3 @@ const EmptyState: FC<EmptyStateProps> = ({
     </div>
   );
 };
-
-export { EmptyState };

@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { CategoryStep } from "./steps/CategoryStep";
 import { LocationStep } from "./steps/LocationStep";
 import { STEPS } from "@/app/types/NewListingTypes";
@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 interface NewListingModalProps {}
 
-const NewListingModal: FC<NewListingModalProps> = ({}) => {
+export const NewListingModal: FC<NewListingModalProps> = ({}) => {
   const router = useRouter();
   const [step, setStep] = useState(STEPS.CATEGORY);
 
@@ -49,13 +49,9 @@ const NewListingModal: FC<NewListingModalProps> = ({}) => {
       error: "Unable to create listing",
     });
   };
-
-  useEffect(() => {
-    toast("Page loaded");
-  }, []);
   return (
     <div className="max-w-lg m-auto mt-10">
-      <details className="text-xs font-mono absolute bottom-10 left-2 -z-50 h-48 w-[40vw] overflow-scroll">
+      <details className="text-xs font-mono absolute bottom-10 left-2 -z-50 h-48 w-[40vw] overflow-scroll hidden">
         <pre>
           <summary>FormData</summary>
           {JSON.stringify(formData, null, 2)}
@@ -81,5 +77,3 @@ const NewListingModal: FC<NewListingModalProps> = ({}) => {
     </div>
   );
 };
-
-export { NewListingModal };

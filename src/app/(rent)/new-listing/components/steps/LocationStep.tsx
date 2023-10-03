@@ -1,11 +1,12 @@
 "use client";
 import { CountrySelect } from "@/app/components/ui/CountrySelect";
 import { useForm, FieldValues } from "react-hook-form";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { StepHeader } from "../ui/StepHeader";
 import { Button } from "@/app/components/ui/Button";
 import useRentFormStore from "@/app/stores/rentstore";
+import dynamic from "next/dynamic";
 
 interface LocationStepProps {
   onPrevious: () => void;
@@ -15,12 +16,7 @@ interface LocationStepProps {
 const LocationStep: FC<LocationStepProps> = ({ onPrevious, onNext }) => {
   const formData = useRentFormStore((state) => state.formData);
 
-  const {
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<FieldValues>({
+  const { handleSubmit, watch, setValue } = useForm<FieldValues>({
     defaultValues: {
       location: formData.location,
     },
@@ -29,6 +25,15 @@ const LocationStep: FC<LocationStepProps> = ({ onPrevious, onNext }) => {
     onNext({ location: data.location });
   };
   const location = watch("location");
+
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("../../../../components/Map"), {
+        ssr: false,
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [location]
+  );
   return (
     <form className="h-full w-full" onSubmit={handleSubmit(onSubmitStep)}>
       <StepHeader
@@ -40,8 +45,8 @@ const LocationStep: FC<LocationStepProps> = ({ onPrevious, onNext }) => {
         location={location}
         onChange={(location: any) => setValue("location", location)}
       />
-      <div className="py-10 m-auto">
-        <MdOutlineLocationOn size={90} color="#94a3b8" className="w-full" />
+      <div className="h-[35vh] bg-slate-300 rounded-lg my-5">
+        <Map center={location?.latlng} />
       </div>
       <div className="flex flex-row items-end float-right gap-5">
         <Button
