@@ -1,7 +1,6 @@
-import { FC } from "react";
 import { Toaster } from "react-hot-toast";
 
-export const CustomToaster: FC = () => {
+export const CustomToaster = () => {
   return (
     <Toaster
       position="bottom-right"

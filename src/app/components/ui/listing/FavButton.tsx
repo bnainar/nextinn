@@ -11,7 +11,7 @@ interface FavButtonProps {
   currentUser?: User | null;
 }
 
-const FavButton: FC<FavButtonProps> = (props) => {
+export const FavButton: FC<FavButtonProps> = (props) => {
   const { isFav, toggleFav } = useFav(props);
   const [isLoading, setIsLoading] = useState(false);
   const onClick = async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -41,5 +41,3 @@ const FavButton: FC<FavButtonProps> = (props) => {
     </div>
   );
 };
-
-export { FavButton };

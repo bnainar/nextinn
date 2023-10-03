@@ -11,7 +11,7 @@ import Link from "next/link";
 
 interface UserMenuProps {}
 
-const UserMenu: FC<UserMenuProps> = ({}) => {
+export const UserMenu: FC<UserMenuProps> = ({}) => {
   // converting login and usermenu to controlled compeonents
   const userMenuDropdown = useLoginStore((s) => s.userMenuDropdown);
   const handleUserMenuDropdownChange = useLoginStore(
@@ -58,8 +58,8 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
                 open={loginModal.isOpen}
                 onOpenChange={handleLoginModalChange}
               >
-                <DialogTrigger asChild>
-                  <MenuItem>Login</MenuItem>
+                <DialogTrigger className="w-20 hover:bg-slate-200 py-2 px-4 text-left cursor-pointer">
+                  <span>Login</span>
                 </DialogTrigger>
                 <DialogContent title="Login / Sign Up">
                   <LoginForm />
@@ -72,8 +72,6 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
     </DropdownMenu.Root>
   );
 };
-
-export { UserMenu };
 
 interface MenuItemProps {
   children: React.ReactNode;
@@ -90,5 +88,3 @@ const MenuItem: FC<MenuItemProps> = ({ children, onClick }) => {
     </div>
   );
 };
-
-export { MenuItem };

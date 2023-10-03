@@ -1,12 +1,9 @@
 "use client";
-import { FC } from "react";
 import { categories } from "./categories";
 import { useSearchParams } from "next/navigation";
 import { CategoryItem } from "./CategoryItem";
 
-interface CategoriesFilterProps {}
-
-const CategoriesList: FC<CategoriesFilterProps> = ({}) => {
+export const CategoriesList = () => {
   const searchParams = useSearchParams();
   const category = searchParams?.get("category");
   return (
@@ -17,5 +14,3 @@ const CategoriesList: FC<CategoriesFilterProps> = ({}) => {
     </div>
   );
 };
-
-export { CategoriesList };

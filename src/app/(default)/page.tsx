@@ -17,22 +17,27 @@ export default async function Home({
 }) {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
-  if (listings.length === 0) {
-    return <EmptyState title="No exact matches" resetButton />;
-  }
   return (
     <main>
       <Container>
         <CategoriesList />
-        <div className="listing-grid">
-          {listings.map((listing: Listing) => (
-            <ListingCard
-              key={listing.id}
-              listing={listing}
-              currentUser={currentUser}
-            />
-          ))}
-        </div>
+        {listings.length === 0 ? (
+          <EmptyState
+            title="No exact matches"
+            resetButton
+            resetLabel="Reset Filters"
+          />
+        ) : (
+          <div className="listing-grid">
+            {listings.map((listing: Listing) => (
+              <ListingCard
+                key={listing.id}
+                listing={listing}
+                currentUser={currentUser}
+              />
+            ))}
+          </div>
+        )}
       </Container>
     </main>
   );

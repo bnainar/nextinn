@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { FC, ReactNode } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
+import { IconType } from "react-icons/lib";
 
 interface ButtonProps {
   variant: "filled" | "outline";
@@ -10,8 +11,7 @@ interface ButtonProps {
   children: ReactNode;
   isLoading?: boolean;
   disabled?: boolean;
-  hasIcon?: boolean;
-  icon?: ReactNode;
+  icon?: IconType;
   onClick?: (e: any) => void;
 }
 const styles = {
@@ -30,8 +30,7 @@ const Button: FC<ButtonProps> = ({
   isLoading,
   disabled,
   width = "content",
-  icon,
-  hasIcon = false,
+  icon: Icon,
   onClick,
 }) => {
   return (
@@ -47,9 +46,7 @@ const Button: FC<ButtonProps> = ({
         className
       )}
     >
-      {hasIcon && !isLoading && (
-        <span className="mr-0.5 -ml-0.5 h-5 w-5">{icon}</span>
-      )}
+      {!isLoading && Icon && <Icon className="mr-0.5 -ml-0.5 h-5 w-5" />}
       {isLoading && (
         <AiOutlineLoading
           size={20}

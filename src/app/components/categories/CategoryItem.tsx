@@ -10,7 +10,7 @@ interface CategoryItemProps {
   selected?: boolean;
 }
 
-const CategoryItem: FC<CategoryItemProps> = ({
+export const CategoryItem: FC<CategoryItemProps> = ({
   data: { icon: Icon, label },
   selected,
 }) => {
@@ -52,5 +52,3 @@ const CategoryItem: FC<CategoryItemProps> = ({
     </div>
   );
 };
-
-export { CategoryItem };

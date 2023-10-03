@@ -1,6 +1,4 @@
-import { FC } from "react";
-
-const ListingGridLoading = ({}) => {
+export const ListingGridLoading = () => {
   return (
     <div className="listing-grid">
       {Array(8)
@@ -14,5 +12,3 @@ const ListingGridLoading = ({}) => {
     </div>
   );
 };
-
-export { ListingGridLoading };
