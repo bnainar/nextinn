@@ -1,6 +1,5 @@
 import { FavButton } from "@/app/components/ui/listing/FavButton";
 import { getCountryByValue } from "@/app/utils/countries";
-import getCurrentUser from "@/app/utils/getCurrentUser";
 import { User } from "@prisma/client";
 import Image from "next/image";
 import { FC } from "react";
@@ -14,7 +13,7 @@ interface ListingHeaderProps {
   currentUser?: User | null;
 }
 
-const ListingHeader: FC<ListingHeaderProps> = ({
+export const ListingHeader: FC<ListingHeaderProps> = ({
   id,
   title,
   imgURL,
@@ -40,5 +39,3 @@ const ListingHeader: FC<ListingHeaderProps> = ({
     </main>
   );
 };
-
-export { ListingHeader };

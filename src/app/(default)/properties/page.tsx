@@ -8,7 +8,7 @@ export default async function TripsPage() {
   if (!user) return <EmptyState title="Unauthorized" resetButton />;
 
   const listings = await getListings({ userId: user.id });
-  if (listings.length === 0)
+  if (!listings || listings.length === 0)
     return (
       <EmptyState
         title="No trips found"

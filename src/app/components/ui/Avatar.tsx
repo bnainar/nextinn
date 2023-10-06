@@ -4,7 +4,7 @@ import Image from "next/image";
 import clsx from "clsx";
 
 interface AvatarProps {
-  src: string | null | undefined;
+  src?: string | null | undefined;
   className?: string;
 }
 

@@ -1,6 +1,5 @@
 "use client";
 import { FC } from "react";
-
 import clsx from "clsx";
 import { Category } from "@/app/components/categories/categories";
 
@@ -10,7 +9,7 @@ interface CategoryCardSelect {
   handleSelect: (label: string) => void;
 }
 
-const CategoryCardSelect: FC<CategoryCardSelect> = ({
+export const CategoryCardSelect: FC<CategoryCardSelect> = ({
   data: { icon: Icon, label },
   selected,
   handleSelect,
@@ -19,7 +18,6 @@ const CategoryCardSelect: FC<CategoryCardSelect> = ({
     t: "border-purple-800",
     f: "border-transparent hover:border-purple-400",
   };
-  // console.log(label, selected);
 
   return (
     <div
@@ -36,5 +34,3 @@ const CategoryCardSelect: FC<CategoryCardSelect> = ({
     </div>
   );
 };
-
-export { CategoryCardSelect };

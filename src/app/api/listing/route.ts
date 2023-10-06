@@ -1,6 +1,7 @@
 import { db } from "@/app/utils/db";
 import getCurrentUser from "@/app/utils/getCurrentUser";
 import { NextResponse } from "next/server";
+import { listingPUTSchema } from "./postSchema";
 
 export async function POST(req: Request) {
   const currentUser = await getCurrentUser();
@@ -8,17 +9,17 @@ export async function POST(req: Request) {
   if (!currentUser) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const body = await req.json();
   try {
-    const listing = await db.listing.create({
+    const body = await req.json();
+    const listing = listingPUTSchema.parse(body);
+
+    await db.listing.create({
       data: {
-        ...body,
-        location: body.location.value,
-        price: parseInt(body.price, 10),
+        ...listing,
         userId: currentUser.id,
       },
     });
-    return NextResponse.json(listing, { status: 201 });
+    return NextResponse.json(null, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }

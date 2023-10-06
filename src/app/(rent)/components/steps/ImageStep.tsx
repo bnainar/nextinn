@@ -16,7 +16,7 @@ interface ImageStepProps {
   onNext: (data?: any) => void;
 }
 
-const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
+export const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
   const imgURL = useRentFormStore((state) => state.formData.imgURL);
   const setFormData = useRentFormStore((state) => state.setFormData);
 
@@ -44,7 +44,7 @@ const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
       >
         {({ open, error }) => {
           const handleOnClick = (e: any) => {
-            error && console.log(error);
+            if (error) console.error(error);
             e.preventDefault();
             if (open && open != undefined) open?.();
           };
@@ -102,5 +102,3 @@ const ImageStep: FC<ImageStepProps> = ({ onPrevious, onNext }) => {
     </form>
   );
 };
-
-export { ImageStep };

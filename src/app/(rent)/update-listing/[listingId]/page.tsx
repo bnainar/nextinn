@@ -1,8 +1,8 @@
 import { EmptyState } from "@/app/components/ui/EmptyState";
 import getListingById from "@/app/utils/getListingById";
-import { ListingPage } from "./ListingPage";
 import getCurrentUser from "@/app/utils/getCurrentUser";
-import getReservations from "@/app/utils/getReservations";
+import { ListingFormType } from "@/app/stores/rentstore";
+import { ListingWizard } from "../../components/ListingWizard";
 
 interface IParams {
   listingId: string;
@@ -10,10 +10,9 @@ interface IParams {
 
 export default async function Page({ params }: { params: IParams }) {
   const listing = await getListingById(params);
-  const reservations = await getReservations(params);
   const currentUser = await getCurrentUser();
 
-  if (!listing)
+  if (!listing || currentUser?.id != listing.user.id)
     return (
       <EmptyState
         title="Listing not found"
@@ -22,12 +21,16 @@ export default async function Page({ params }: { params: IParams }) {
         resetLabel="Explore more listings"
       />
     );
-
-  return (
-    <ListingPage
-      listing={listing}
-      currentUser={currentUser}
-      reservations={reservations}
-    />
-  );
+  const newListing: ListingFormType = {
+    category: listing.category,
+    title: listing.title,
+    desc: listing.desc,
+    location: listing.location,
+    imgURL: listing.imgURL,
+    guestsLimit: listing.guestsLimit,
+    roomCount: listing.roomCount,
+    bathCount: listing.bathCount,
+    price: listing.price,
+  };
+  return <ListingWizard isUpdate listing={newListing} updateId={listing.id} />;
 }

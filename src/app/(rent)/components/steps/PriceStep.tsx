@@ -15,7 +15,10 @@ interface PriceStepProps {
   onSubmit: (data: any) => void;
 }
 
-const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
+export const PriceStep: React.FC<PriceStepProps> = ({
+  onPrevious,
+  onSubmit,
+}) => {
   const formData = useRentFormStore((state) => state.formData);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,7 +26,6 @@ const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
     handleSubmit,
     register,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -31,7 +33,6 @@ const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
     },
     resolver: zodResolver(schema),
   });
-  console.log(watch("price"));
 
   const onSubmitStep = (data: any) => {
     setIsLoading(true);
@@ -75,5 +76,3 @@ const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
     </form>
   );
 };
-
-export { PriceStep };

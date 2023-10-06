@@ -15,7 +15,7 @@ interface ListingReservationProps {
   disabledDates: Date[];
 }
 
-const ListingReservation: FC<ListingReservationProps> = ({
+export const ListingReservation: FC<ListingReservationProps> = ({
   price,
   totalPrice,
   onChangeDate,
@@ -42,6 +42,7 @@ const ListingReservation: FC<ListingReservationProps> = ({
           variant="filled"
           width="full"
           isLoading={disabled}
+          disabled={noOfDays < 1}
           onClick={onSubmit}
         >
           Reserve
@@ -61,5 +62,3 @@ const ListingReservation: FC<ListingReservationProps> = ({
     </div>
   );
 };
-
-export { ListingReservation };

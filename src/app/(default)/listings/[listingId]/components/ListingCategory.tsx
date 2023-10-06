@@ -5,7 +5,7 @@ interface ListingCategoryProps {
   category?: Category;
 }
 
-const ListingCategory: FC<ListingCategoryProps> = ({ category }) => {
+export const ListingCategory: FC<ListingCategoryProps> = ({ category }) => {
   if (!category) return null;
   const Icon = category.icon;
   return (
@@ -22,5 +22,3 @@ const ListingCategory: FC<ListingCategoryProps> = ({ category }) => {
     </div>
   );
 };
-
-export { ListingCategory };

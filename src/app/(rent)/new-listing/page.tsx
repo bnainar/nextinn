@@ -1,5 +1,5 @@
-import { NewListingModal } from "./components/NewListingModal";
+import { ListingWizard } from "../components/ListingWizard";
 
 export default function RentPage() {
-  return <NewListingModal />;
+  return <ListingWizard />;
 }

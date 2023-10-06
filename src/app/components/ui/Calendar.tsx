@@ -8,7 +8,11 @@ interface CalendarProps {
   onChange: (value: RangeKeyDict) => void;
 }
 
-const Calendar: FC<CalendarProps> = ({ value, disabledDates, onChange }) => {
+export const Calendar: FC<CalendarProps> = ({
+  value,
+  disabledDates,
+  onChange,
+}) => {
   return (
     <DateRange
       rangeColors={["#262626", "blue"]}
@@ -23,5 +27,3 @@ const Calendar: FC<CalendarProps> = ({ value, disabledDates, onChange }) => {
     />
   );
 };
-
-export { Calendar };

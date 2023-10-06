@@ -16,7 +16,7 @@ interface DescStepProps {
   onNext: (data: any) => void;
 }
 
-const DescStep: React.FC<DescStepProps> = ({ onPrevious, onNext }) => {
+export const DescStep: React.FC<DescStepProps> = ({ onPrevious, onNext }) => {
   const title = useRentFormStore((state) => state.formData.title);
   const desc = useRentFormStore((state) => state.formData.desc);
 
@@ -78,5 +78,3 @@ const DescStep: React.FC<DescStepProps> = ({ onPrevious, onNext }) => {
     </form>
   );
 };
-
-export { DescStep };

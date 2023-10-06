@@ -5,7 +5,7 @@ interface StepHeaderProps {
   subtitle?: string;
 }
 
-const StepHeader: FC<StepHeaderProps> = ({ title, subtitle }) => {
+export const StepHeader: FC<StepHeaderProps> = ({ title, subtitle }) => {
   return (
     <div>
       <div className="font-bold text-3xl text-slate-800">{title}</div>
@@ -13,5 +13,3 @@ const StepHeader: FC<StepHeaderProps> = ({ title, subtitle }) => {
     </div>
   );
 };
-
-export { StepHeader };

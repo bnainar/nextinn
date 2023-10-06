@@ -8,7 +8,7 @@ interface CountrySelectProps {
   placeholder?: string;
 }
 
-const CountrySelect: FC<CountrySelectProps> = ({
+export const CountrySelect: FC<CountrySelectProps> = ({
   location,
   onChange,
   placeholder = "Select a country",
@@ -42,5 +42,3 @@ const CountrySelect: FC<CountrySelectProps> = ({
     </div>
   );
 };
-
-export { CountrySelect };
