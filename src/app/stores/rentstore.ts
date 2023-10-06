@@ -14,7 +14,7 @@ export interface ListingFormType {
 
 type Store = {
   formData: ListingFormType;
-  setFormData: (data: { key: string; value: any }) => void;
+  setFormData: (data: any) => void;
   setForm: (data?: ListingFormType) => void;
 };
 

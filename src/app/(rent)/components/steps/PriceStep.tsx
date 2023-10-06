@@ -26,7 +26,6 @@ export const PriceStep: React.FC<PriceStepProps> = ({
     handleSubmit,
     register,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {

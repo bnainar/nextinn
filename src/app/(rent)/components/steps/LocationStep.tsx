@@ -12,7 +12,7 @@ interface LocationStepProps {
   onNext: (data: any) => void;
 }
 
-const LocationStep: FC<LocationStepProps> = ({ onPrevious, onNext }) => {
+export const LocationStep: FC<LocationStepProps> = ({ onPrevious, onNext }) => {
   const formData = useRentFormStore((state) => state.formData);
 
   const { handleSubmit, watch, setValue } = useForm<FieldValues>({
@@ -27,7 +27,7 @@ const LocationStep: FC<LocationStepProps> = ({ onPrevious, onNext }) => {
 
   const Map = useMemo(
     () =>
-      dynamic(() => import("../../../../components/Map"), {
+      dynamic(() => import("@/app/components/Map"), {
         ssr: false,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,5 +70,3 @@ const LocationStep: FC<LocationStepProps> = ({ onPrevious, onNext }) => {
     </form>
   );
 };
-
-export { LocationStep };

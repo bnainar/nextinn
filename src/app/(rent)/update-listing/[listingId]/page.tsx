@@ -1,8 +1,8 @@
 import { EmptyState } from "@/app/components/ui/EmptyState";
-import { ListingWizard } from "../../new-listing/components/ListingWizard";
 import getListingById from "@/app/utils/getListingById";
 import getCurrentUser from "@/app/utils/getCurrentUser";
 import { ListingFormType } from "@/app/stores/rentstore";
+import { ListingWizard } from "../../components/ListingWizard";
 
 interface IParams {
   listingId: string;
