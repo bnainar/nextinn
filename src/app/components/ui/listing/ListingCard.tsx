@@ -16,6 +16,7 @@ interface ListingCardProps {
   actionId?: string;
   currentUser?: User | null;
   disabled?: boolean;
+  edit?: boolean;
 }
 
 export const ListingCard: FC<ListingCardProps> = ({
@@ -26,6 +27,7 @@ export const ListingCard: FC<ListingCardProps> = ({
   actionId = "",
   currentUser,
   disabled,
+  edit,
 }) => {
   const router = useRouter();
   const location = getCountryByValue(listing.location);
@@ -81,12 +83,25 @@ export const ListingCard: FC<ListingCardProps> = ({
           )}
         </p>
         {onAction && actionLabel && (
-          <div className="p-2">
+          <div className="p-2 flex justify-between">
+            {edit && (
+              <Button
+                variant="outline"
+                width="content"
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  e.stopPropagation();
+                  router.push(`/update-listing/${actionId}`);
+                }}
+              >
+                Edit
+              </Button>
+            )}
             <Button
               variant="outline"
-              width="full"
+              width="content"
               onClick={handleCancel}
               isLoading={disabled}
+              className="text-red-500 border-red-500"
             >
               {actionLabel}
             </Button>

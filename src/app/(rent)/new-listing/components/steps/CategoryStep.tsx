@@ -1,6 +1,6 @@
 "use client";
 import { categories } from "@/app/components/categories/categories";
-import { FC, FormEvent, FormEventHandler, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import { CategoryCardSelect } from "../ui/CategoryCardSelect";
 import { StepHeader } from "../ui/StepHeader";
 import { Button } from "@/app/components/ui/Button";

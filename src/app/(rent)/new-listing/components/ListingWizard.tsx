@@ -16,11 +16,13 @@ import { getCountryByValue } from "@/app/utils/countries";
 interface ListingWizardProps {
   isUpdate?: boolean;
   listing?: ListingFormType;
+  updateId?: string;
 }
 
 export const ListingWizard: FC<ListingWizardProps> = ({
   isUpdate,
   listing,
+  updateId,
 }) => {
   const router = useRouter();
   const [step, setStep] = useState(STEPS.CATEGORY);
@@ -51,21 +53,23 @@ export const ListingWizard: FC<ListingWizardProps> = ({
 
   const onSubmit = (data: any) => {
     setFormData(data);
+    const location = formData.location.value;
 
-    const body = { ...formData, ...data };
-    console.log("final", body);
-    toast.success("submitted form");
-    // const promise = axios.post("/api/listing", body);
-    // toast.promise(promise, {
-    //   loading: "Creating listing...",
-    //   success: ({ data }) => {
-    //     console.log(data);
-    //     setForm();
-    //     router.push("/properties");
-    //     return "Your listing is created";
-    //   },
-    //   error: "Unable to create listing",
-    // });
+    const body = { ...formData, ...data, location };
+    // console.log("final", body);
+    const promise = isUpdate
+      ? axios.put("/api/listing/" + updateId, body)
+      : axios.post("/api/listing", body);
+    toast.promise(promise, {
+      loading: "Updating listing...",
+      success: ({ data }) => {
+        console.log(data);
+        setForm();
+        router.push("/properties");
+        return "Your listing is updated";
+      },
+      error: "Unable to update listing",
+    });
   };
 
   return (

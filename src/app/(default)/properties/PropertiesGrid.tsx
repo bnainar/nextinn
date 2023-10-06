@@ -31,7 +31,6 @@ export const PropertiesGrid: FC<PropertiesGridProps> = ({
         error: (error) => {
           console.log(error?.response?.data?.error);
           setDeletingId("");
-
           return "Failed to delete listing";
         },
       });
@@ -49,6 +48,7 @@ export const PropertiesGrid: FC<PropertiesGridProps> = ({
           actionLabel="Delete listing"
           onAction={handleDelete}
           disabled={deletingId === l.id}
+          edit
         />
       ))}
     </div>

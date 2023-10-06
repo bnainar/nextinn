@@ -34,7 +34,6 @@ export const PriceStep: React.FC<PriceStepProps> = ({
     },
     resolver: zodResolver(schema),
   });
-  console.log(watch("price"));
 
   const onSubmitStep = (data: any) => {
     setIsLoading(true);

@@ -32,5 +32,5 @@ export default async function Page({ params }: { params: IParams }) {
     bathCount: listing.bathCount,
     price: listing.price,
   };
-  return <ListingWizard isUpdate listing={newListing} />;
+  return <ListingWizard isUpdate listing={newListing} updateId={listing.id} />;
 }
