@@ -1,11 +1,11 @@
-import { Category } from "@/app/components/categories/categories";
-import { Avatar } from "@/app/components/ui/Avatar";
-import { getCountryByValue } from "@/app/utils/countries";
-import { User } from "@prisma/client";
 import { FC } from "react";
-import { NumberLiteralType } from "typescript";
-import { ListingCategory } from "./ListingCategory";
 import dynamic from "next/dynamic";
+import { User } from "@prisma/client";
+import { Avatar } from "@/app/components/ui/Avatar";
+import { ListingCategory } from "./ListingCategory";
+import { getCountryByValue } from "@/app/utils/countries";
+import { Category } from "@/app/components/categories/categories";
+
 const Map = dynamic(() => import("@/app/components/Map"), {
   ssr: false,
 });
@@ -20,7 +20,7 @@ interface ListingInfoProps {
   location: string;
 }
 
-const ListingInfo: FC<ListingInfoProps> = ({
+export const ListingInfo: FC<ListingInfoProps> = ({
   user,
   category,
   desc,
@@ -32,7 +32,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
   const coords = getCountryByValue(location)?.latlng;
 
   return (
-    <div className="col-span-4 flex flex-col gap-8 mb-10">
+    <div className="col-span-5 flex flex-col gap-8 mb-10">
       <div className="flex justify-between pb-2">
         <div className="flex flex-col gap-2">
           <div className="text-2xl font-semibold">Hosted by {user.name}</div>
@@ -55,5 +55,3 @@ const ListingInfo: FC<ListingInfoProps> = ({
     </div>
   );
 };
-
-export { ListingInfo };

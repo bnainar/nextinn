@@ -24,7 +24,7 @@ interface ListingPageProps {
   reservations?: Reservation[];
 }
 
-const ListingPage: FC<ListingPageProps> = ({
+export const ListingPage: FC<ListingPageProps> = ({
   listing,
   currentUser,
   reservations = [],
@@ -76,6 +76,7 @@ const ListingPage: FC<ListingPageProps> = ({
       return;
     }
     setIsLoading(true);
+
     const data = {
       totalPrice,
       startDate: dateRange.startDate,
@@ -98,12 +99,12 @@ const ListingPage: FC<ListingPageProps> = ({
     });
   }, [
     currentUser,
+    listing.id,
     login,
     setIsLoading,
     totalPrice,
     dateRange,
     router,
-    listing.id,
   ]);
   return (
     <div className="mx-auto mt-4 px-6 md:px-16 overflow-x-auto max-w-7xl">
@@ -116,7 +117,7 @@ const ListingPage: FC<ListingPageProps> = ({
           location={listing.location}
           currentUser={currentUser}
         />
-        <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-8 md:gap-10">
           <ListingInfo
             user={listing.user}
             category={category}
@@ -143,5 +144,3 @@ const ListingPage: FC<ListingPageProps> = ({
     </div>
   );
 };
-
-export { ListingPage };

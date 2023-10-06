@@ -15,7 +15,10 @@ interface PriceStepProps {
   onSubmit: (data: any) => void;
 }
 
-const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
+export const PriceStep: React.FC<PriceStepProps> = ({
+  onPrevious,
+  onSubmit,
+}) => {
   const formData = useRentFormStore((state) => state.formData);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -75,5 +78,3 @@ const PriceStep: React.FC<PriceStepProps> = ({ onPrevious, onSubmit }) => {
     </form>
   );
 };
-
-export { PriceStep };

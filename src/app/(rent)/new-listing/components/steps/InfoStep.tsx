@@ -11,7 +11,7 @@ interface InfoStepProps {
   onNext: (data: any) => void;
 }
 
-const InfoStep: FC<InfoStepProps> = ({ onPrevious, onNext }) => {
+export const InfoStep: FC<InfoStepProps> = ({ onPrevious, onNext }) => {
   const formData = useRentFormStore((state) => state.formData);
 
   const { handleSubmit, watch, setValue } = useForm<FieldValues>({
@@ -35,21 +35,18 @@ const InfoStep: FC<InfoStepProps> = ({ onPrevious, onNext }) => {
         <Counter
           title="Rooms"
           subtitle="Total Rooms"
-          label="roomCount"
           value={roomCount}
           onChange={(val: number) => setValue("roomCount", val)}
         />
         <Counter
           title="Guests"
           subtitle="Number of Guests allowed"
-          label="guestsLimit"
           value={guestsLimit}
           onChange={(val: number) => setValue("guestsLimit", val)}
         />
         <Counter
           title="Bathrooms"
           subtitle="No. of bathrooms available"
-          label="bathCount"
           value={bathCount}
           onChange={(val: number) => setValue("bathCount", val)}
         />
@@ -76,5 +73,3 @@ const InfoStep: FC<InfoStepProps> = ({ onPrevious, onNext }) => {
     </form>
   );
 };
-
-export { InfoStep };

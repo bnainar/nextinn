@@ -10,16 +10,14 @@ interface EmptyStateProps {
 }
 
 export const EmptyState: FC<EmptyStateProps> = ({
-  title,
+  title = "Something Went Wrong",
   subtitle,
   resetButton,
   resetLabel,
 }) => {
   return (
     <div className="flex flex-col gap-2 h-full w-full items-center mt-36 text-center">
-      <h2 className="text-3xl text-neutral-800 font-medium">
-        {title ?? "Something Went Wrong"}
-      </h2>
+      <h2 className="text-3xl text-neutral-800 font-medium">{title}</h2>
       <p className="text-lg text-neutral-600 mb-4">
         {subtitle ?? resetButton ? "Try changing the search filters" : null}
       </p>

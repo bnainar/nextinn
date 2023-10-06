@@ -18,7 +18,7 @@ interface ListingCardProps {
   disabled?: boolean;
 }
 
-const ListingCard: FC<ListingCardProps> = ({
+export const ListingCard: FC<ListingCardProps> = ({
   listing,
   reservation,
   onAction,
@@ -96,5 +96,3 @@ const ListingCard: FC<ListingCardProps> = ({
     </div>
   );
 };
-
-export { ListingCard };

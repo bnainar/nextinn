@@ -7,11 +7,14 @@ import { FC, useCallback, useState } from "react";
 import toast from "react-hot-toast";
 
 interface PropertiesGridProps {
-  listings: Listing[] | null;
+  listings: Listing[];
   currentUser: User;
 }
 
-const PropertiesGrid: FC<PropertiesGridProps> = ({ listings, currentUser }) => {
+export const PropertiesGrid: FC<PropertiesGridProps> = ({
+  listings,
+  currentUser,
+}) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
@@ -37,7 +40,7 @@ const PropertiesGrid: FC<PropertiesGridProps> = ({ listings, currentUser }) => {
   );
   return (
     <div className="listing-grid">
-      {listings?.map((l) => (
+      {listings.map((l) => (
         <ListingCard
           key={l.id}
           listing={l}
@@ -51,5 +54,3 @@ const PropertiesGrid: FC<PropertiesGridProps> = ({ listings, currentUser }) => {
     </div>
   );
 };
-
-export { PropertiesGrid };

@@ -14,7 +14,7 @@ interface ReservationGridProps {
   actionLabel: string;
 }
 
-const ReservationGrid: FC<ReservationGridProps> = ({
+export const ReservationGrid: FC<ReservationGridProps> = ({
   currentUser,
   reservations,
   actionLabel,
@@ -34,7 +34,7 @@ const ReservationGrid: FC<ReservationGridProps> = ({
           return "Reservation cancelled";
         },
         error: (error) => {
-          console.log(error?.response?.data?.error);
+          console.log(error);
           setDeletingId("");
           return "Failed to cancel reservation";
         },
@@ -59,5 +59,3 @@ const ReservationGrid: FC<ReservationGridProps> = ({
     </div>
   );
 };
-
-export { ReservationGrid };

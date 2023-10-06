@@ -22,7 +22,7 @@ const styles = {
   full: "w-full",
   content: "w-max",
 };
-const Button: FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   variant,
   children,
   className,
@@ -59,4 +59,3 @@ const Button: FC<ButtonProps> = ({
   );
 };
 //span className={clsx(width === "full" && "grow")}
-export { Button };

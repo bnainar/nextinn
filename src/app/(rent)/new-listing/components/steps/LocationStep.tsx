@@ -2,7 +2,6 @@
 import { CountrySelect } from "@/app/components/ui/CountrySelect";
 import { useForm, FieldValues } from "react-hook-form";
 import { FC, useMemo } from "react";
-import { MdOutlineLocationOn } from "react-icons/md";
 import { StepHeader } from "../ui/StepHeader";
 import { Button } from "@/app/components/ui/Button";
 import useRentFormStore from "@/app/stores/rentstore";

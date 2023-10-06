@@ -31,7 +31,6 @@ export const Counter: FC<CounterProps> = ({
           disabled={value === minValue}
           onClick={() => onChange(value - 1)}
         />
-
         <div className="text-xl px-4 font-mono">{value}</div>
         <IconButton icon={AiOutlinePlus} onClick={() => onChange(value + 1)} />
       </div>
