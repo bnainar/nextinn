@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { ChangeEvent, FC, forwardRef, Ref } from "react";
+import { ChangeEvent, forwardRef, Ref } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
@@ -14,8 +14,7 @@ interface InputProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-// eslint-disable-next-line react/display-name
-export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     { label, id, type, register, value, onChange, errors, className, ...props },
     ref: Ref<HTMLInputElement>
@@ -47,11 +46,15 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           )}
           ref={ref}
           type={type}
-          defaultValue={value} // Pass the value prop
-          onChange={onChange} // Pass the onChange prop
+          defaultValue={value}
+          onChange={onChange}
           {...props}
         />
       </div>
     );
   }
 );
+
+Input.displayName = "Input";
+
+export { Input };

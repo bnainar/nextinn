@@ -9,8 +9,7 @@ interface DialogContentProps {
   title: string;
 }
 
-// eslint-disable-next-line react/display-name
-export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
+const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   ({ children, title, ...props }, forwardedRef: Ref<HTMLDivElement>) => (
     <DialogPrimitive.Portal>
       <DialogPrimitive.Overlay className="bg-black/50 data-[state=open]:animate-overlayShow fixed inset-0 DialogOverlay">
@@ -47,6 +46,9 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     </DialogPrimitive.Portal>
   )
 );
+
+DialogContent.displayName = "DialogContent";
+export { DialogContent };
 
 export const Dialog = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;
